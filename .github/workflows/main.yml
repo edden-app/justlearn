@@ -1,0 +1,32 @@
+name: Deploy to Firebase Hosting
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '**.firebaserc'
+  workflow_dispatch:
+
+
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@main
+
+    - name: Install dependencies
+      run: npm install astro
+
+    - name: Install dependencies
+      run: npm install -g firebase-tools
+
+    - name: Build and test
+      run: npm run build
+
+    - name: Deploy to Firebase
+      run: firebase deploy --token 1//0gXJ7sdahp8ZXCgYIARAAGBASNwF-L9IrMuMt1xmioNpVvNKk9IQZU6W5cZ1Ih-D7j6WFXCjfDz57CtZUmFaiPnsYjkRYlhGFNkk
+

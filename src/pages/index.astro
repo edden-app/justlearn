@@ -1,0 +1,967 @@
+---
+import { SITE } from '~/config.mjs';
+import { getCanonical, getHomePermalink } from '~/utils/permalinks';
+import Layout from '~/layouts/PageLayout.astro';
+
+import { Icon } from 'astro-icon';
+import Picture from '~/components/core/Picture.astro';
+import Steps from '~/components/widgets/Steps.astro'
+import ToggleTheme from '~/components/core/ToggleTheme.astro';
+import ToggleMenu from '~/components/core/ToggleMenu.astro';
+import Content from '~/components/widgets/Content.astro';
+import { db } from "../../lib/firebase";
+import { query, collection, getDocs, where,} from "firebase/firestore";
+
+//FIREBASE ADD THE DOCUMENT ID HERE 
+const q = query(collection(db, "users"), where("id", "==", "justlearn"),);
+
+const querySnapshot = await getDocs(q);
+const datas = querySnapshot.docs.map((querySnapshot) => ({ ...querySnapshot.data(), id: querySnapshot.id }));
+
+const meta = {
+	title: SITE.title,
+	description: SITE.description,
+	canonical: getCanonical(getHomePermalink()),
+};
+---
+
+
+<Layout {meta}>
+
+
+	<!-- HEADER SECTION  -->
+
+	<header id="header" class="sticky top-0 z-40 flex-none mx-auto w-full bg-white md:bg-white/90 dark:bg-slate-900 dark:md:bg-slate-900/90 md:backdrop-blur-sm border-b dark:border-b-0">
+		<div class="py-3 px-3 mx-auto w-full md:flex md:justify-between max-w-6xl md:px-10">
+			<div class="flex justify-between">
+				<a class="flex items-center" href={getHomePermalink()}>
+					<img src="https://firebasestorage.googleapis.com/v0/b/website-storage-account.appspot.com/o/YCBH%2FWhatsApp_Image_2023-03-19_at_1.24.21_PM-removebg-preview.png?alt=media&token=938b2a6c-792e-4516-806f-64297833d255" alt="Company Logo" width="60" height="60" class="rounded-md">
+				
+
+				
+				
+				</a>
+				<div class="flex items-center md:hidden">
+					<!-- <ToggleTheme /> -->
+					<ToggleMenu />
+				</div>
+			</div>
+			<nav
+				class="items-center w-full md:w-auto hidden md:flex text-gray-600 dark:text-slate-200 h-screen md:h-auto"
+				aria-label="Main navigation"
+			>
+				<ul class="flex flex-col pt-8 md:pt-0 md:flex-row md:self-center w-full md:w-auto text-xl md:text-base">
+					
+					<!-- <li class="md:hidden">
+						<a
+							class="font-medium hover:text-gray-900 dark:hover:text-white px-4 py-3 flex items-center transition duration-150 ease-in-out"
+							href="https://www.linkedin.com/"
+							target="_blank"
+							>Follow on Linkedin 
+						</a>
+					</li> -->
+				
+					<li>
+						{datas.map((data: any) => 
+						<a
+							class="btn bg-primary-500 ml-4 font-medium text-white px-6 hover:bg-yellow-400 py-3 flex items-center transition duration-150 ease-in-out"
+							href= {data.ctalink}
+							target="_blank"
+							>{data.ctabutton}
+						</a>
+						)}
+					</li>
+				</ul>
+				<div class="md:self-center flex items-center mb-4 md:mb-0 ml-2">
+					<div class="hidden items-center md:flex">
+						<!-- <a
+							href="https://www.linkedin.com/company/mrmarketapp/"
+							target="_blank"
+							class="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5"
+							aria-label="linkedin"
+						>
+							<Icon name="tabler:brand-linkedin" class="w-6 h-6" />
+						</a> -->
+						
+						<!-- <ToggleTheme iconClass="w-6 h-6" /> -->
+					</div>
+				</div>
+			</nav>
+		</div>
+	</header>
+
+	<div class="scrollButtons">
+		<button id="scrollUpButton" class="scrollButton">&#x25B2;</button>
+		<button id="scrollDownButton" class="scrollButton">&#x25BC;</button>
+	  </div>
+
+
+		<!-- HERO SECTION  -->
+		<section id="hero_section" class='my-div'>
+			<div class="max-w-8xl mx-auto px-4 sm:px-6 bg-gray-200/70">
+				<div class="py-12 md:py-20">
+					<div class="text-center pb-10 md:pb-16 max-w-5xl mx-auto">
+						<h1 class="text-5xl md:text-[3.50rem] font-bold leading-tighter tracking-tighter mb-4 font-heading">
+							
+							{datas.map((data: any) => 
+								<span class="bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-secondary-500">	
+									{data.heading}
+								</span>
+							)}
+						</h1>
+						<div class="max-w-3xl mx-auto">
+							<br>
+							{datas.map((data: any) => 
+							<p class="text-xl font-semibold text-gray-800 mb-8 dark:text-white">
+								 {data.subheading}
+							</p>
+							)}
+						
+						
+							<div class="max-w-none px-6 flex flex-nowrap flex-col sm:flex-row sm:justify-center gap-4">
+								<div class="flex w-full sm:w-auto">
+									{datas.map((data: any) => 
+									<a
+										class="btn text-white border border-primary-600 bg-primary-600 hover:bg-primary-800 hover:border-primary-800 sm:mb-0 w-full"
+										href= {data.ctalink}
+										target="_blank"
+										rel="noopener"
+									>
+										<Icon name="tabler:phone" class="w-5 h-5 mr-3 -ml-1.5" />{data.ctabutton}
+									</a>
+									)}
+								</div>
+			
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</section>
+
+
+
+	
+		<div class="px-4 py-16 mx-auto max-w-6xl lg:px-8 lg:py-12">
+			<div class="max-w-xl md:mx-auto sm:text-center lg:max-w-4xl md:mb-5">
+				<p class="text-base text-amber-600 dark:text-amber-200 font-semibold tracking-wide uppercase"></p>
+				<h2 class="text-4xl md:text-5xl font-bold leading-tighter text-center tracking-tighter mb-4 font-heading">
+					About
+					{datas.map((data: any) =>
+					<span
+						class="bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-secondary-500 whitespace-nowrap">  {data.name}
+					</span>
+					)}
+				</h2>
+                <p class="text-xl text-gray-700 font-medium mb-12 mt-5 dark:text-white text-center">
+					Just
+					Rojgar Solutions Pvt. Ltd. is a National Award Winning EdTech and SkillTech B2B brand
+					backed by Indian Institute of Management, Lucknow which offers education, learning
+					content, platform technology with mobile app, VR Virtual Reality/ Metaverse trainings,
+					skilling/up skilling/ re skilling, developmental trainings, employment, hybrid trainings in labs
+					and capacity building through tech enabled solutions.
+               </p>
+
+			   <h2 class="text-4xl md:text-5xl font-bold mt-16 leading-tighter text-center tracking-tighter mb-4 font-heading">
+				Our
+				<span
+					class="bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-secondary-500 whitespace-nowrap">  Vision
+				</span>
+			</h2>
+			<p class="text-2xl md:text-xl text-gray-700 font-semibold italic mt-5 dark:text-white text-center">
+				"To connect 1 Billion people globally with trainings & education."
+		   </p>
+			</div>
+		   
+		
+		</div>
+
+
+		<div class="px-4 py-8 md:py-8 sm:px-6 mx-auto md:px-24 lg:px-8 lg:py-0 lg:pb-10 max-w-7xl">
+			<h2 class="text-4xl md:text-5xl font-bold leading-tighter text-center mt-5 tracking-tighter mb-8 font-heading">
+				Our
+				
+				<span
+					class="bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-secondary-500 whitespace-nowrap"> Reach
+				</span>
+	
+			</h2>
+			<div class="grid grid-cols-1 row-gap-8 md:grid-cols-4">
+				<div class="text-center md:border-r dark:md:border-slate-500 mb-10 md:mb-0">
+					<div class="text-5xl font-bold lg:text-5xl xl:text-6xl text-primary-500 font-heading">60+</div>
+					<p class="text-md font-medium tracking-widest text-gray-800 dark:text-slate-400 uppercase lg:text-base">
+						B2B Clients
+					</p>
+				</div>
+				<div class="text-center md:border-r dark:md:border-slate-500 mb-10 md:mb-0">
+					<div class="text-5xl font-bold lg:text-5xl xl:text-6xl text-primary-500 font-heading">1 M+</div>
+					<p class="text-md font-medium tracking-widest text-gray-800 dark:text-slate-400 uppercase lg:text-base">
+						Learners
+					</p>
+				</div>
+				<div class="text-center md:border-r dark:md:border-slate-500 mb-10 md:mb-0">
+					<div class="text-5xl font-bold lg:text-5xl xl:text-6xl text-primary-500 font-heading">10 M+</div>
+					<p class="text-md font-medium tracking-widest text-gray-800 dark:text-slate-400 uppercase lg:text-base">
+						Learners Impacted
+					</p>
+				</div>
+	
+				<div class="text-center">
+					<div class="text-5xl font-bold lg:text-5xl xl:text-6xl text-primary-500 font-heading">500+</div>
+					<p class="text-md font-medium tracking-widest text-gray-800 dark:text-slate-400 uppercase lg:text-base">Empanneled Trainers</p>
+				</div>
+	
+				
+	
+				</div>
+		</div>
+
+		
+
+
+
+
+
+	<!-- FEATURES  -->
+	<section id="features" class="scroll-mt-16">
+		<div class="px-4 py-16 mb-10 mx-auto max-w-6xl lg:px-8 lg:py-20 bg-primary-50 dark:bg-slate-800">
+			<div class="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
+				<p class="text-base text-primary-600 dark:text-primary-200 font-semibold tracking-wide uppercase"></p>
+				<h2 class="text-4xl md:text-5xl font-bold leading-tighter tracking-tighter mb-4 font-heading">
+					Our Offerings as Solution to 
+					{datas.map((data: any) =>
+					<span
+						class="bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-secondary-500 whitespace-nowrap">  Market Needs
+					</span>
+					)}
+				</h2>
+			</div>
+			<div class="grid mx-auto space-y-4 md:space-y-0 md:grid-cols-2">
+
+				<!-- FEATURE 1 -->
+				<div class="space-y-8 sm:px-8">
+					<div class="flex flex-row max-w-md">
+						<div class="mb-4 mr-4">
+							<div class="flex items-center justify-center w-12 h-12 rounded-full bg-primary-400">
+								<Icon name='tabler:book' class="w-5 h-5 text-white" />
+							</div>
+						</div>
+						<div>
+
+							{datas.map((data: any) => <h3 class="mb-3 text-xl font-bold"> {data.feature1head} </h3> )}
+							{datas.map((data: any) => <p> {data.feature1subhead} </p> )}
+							<br>
+						</div>
+					</div>
+				</div>
+				
+				<!-- FEATURE 2 -->
+				<div class="space-y-8 sm:px-8">
+					<div class="flex flex-row max-w-md">
+						<div class="mb-4 mr-4">
+							<div class="flex items-center justify-center w-12 h-12 rounded-full bg-primary-400">
+								<Icon name='tabler:bulb' class="w-5 h-5 text-white" />
+							</div>
+						</div>
+						<div>
+
+							{datas.map((data: any) => <h3 class="mb-3 text-xl font-bold"> {data.feature2head} </h3> )}
+							{datas.map((data: any) => <p> {data.feature2subhead} </p> )}
+							<br>
+						</div>
+					</div>
+				</div>
+			
+				
+		
+				<!-- FEATURE 3 -->
+				<div class="space-y-8 sm:px-8">
+					<div class="flex flex-row max-w-md">
+						<div class="mb-4 mr-4">
+							<div class="flex items-center justify-center w-12 h-12 rounded-full bg-primary-400">
+								<Icon name='tabler:school' class="w-5 h-5 text-white" />
+							</div>
+						</div>
+						<div>
+
+							{datas.map((data: any) => <h3 class="mb-3 text-xl font-bold"> {data.feature3head} </h3> )}
+							{datas.map((data: any) => <p> {data.feature3subhead} </p> )}
+							<br>
+						</div>
+					</div>
+				</div>
+				
+					
+				<!-- FEATURE 4 -->
+				<div class="space-y-8 sm:px-8">
+					<div class="flex flex-row max-w-md">
+						<div class="mb-4 mr-4">
+							<div class="flex items-center justify-center w-12 h-12 rounded-full bg-primary-400">
+								<Icon name='tabler:stack' class="w-5 h-5 text-white" />
+							</div>
+						</div>
+						<div>
+
+							{datas.map((data: any) => <h3 class="mb-3 text-xl font-bold"> {data.feature4head} </h3> )}
+							{datas.map((data: any) => <p> {data.feature4subhead} </p> )}
+						
+						</div>
+					</div>
+				</div>
+			
+			</div>
+		</div>
+	</section>
+				
+	
+<!-- Usecases -->
+<section id="services" class="relative">
+	<div  class="max-w-[80rem] px-4 sm:px-6 py-6 lg:px-8 lg:py-12 lg:pb-16 mx-auto">
+	  <!-- Title -->
+	  <div class="max-w-4xl mx-auto text-center mb-10 lg:mb-14">
+		<h2 class="text-4xl font-bold md:text-5xl md:leading-tight tracking-tight dark:text-white">Our Programmes<span
+			class="bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-yellow-400 ">
+		</span>
+		</h2>
+	  </div>
+	  <!-- End Title -->
+	
+	  <!-- Grid -->
+	  <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:items-center">
+		<!-- Card -->
+		{datas.map((data: any) =>
+		<div class="flex flex-col border-2 text-center rounded-xl p-8  border-primary-500 hover:border-yellow-300 hover:shadow-2xl">
+			
+			<img src={data.usecases1image} class='rounded-md' style="object-fit: cover; height: 200px;">
+			
+			<span class="font-bold text-2xl mt-5 text-gray-800 dark:text-gray-200">
+				{data.usecases1head}
+			</span>
+		
+			<p class="mt-2 text-sm text-gray-500">{data.usecases1subhead}</p>
+			<a
+			  class=" btn bg-primary-500 border-primary-500 text-white text-mn font-semibold hover:bg-secondary-400 border-2 shadow-md mt-5"
+			  href= "https://www.justlearnindia.in/"
+			  target="_blank"
+			  >Know More
+			</a>
+		</div>
+		)}
+	
+		<!-- End Card -->
+	
+		<!-- Card -->
+		{datas.map((data: any) =>
+		<div class="flex flex-col border-2 text-center  rounded-xl p-8 border-primary-500 hover:border-yellow-300 hover:shadow-2xl">
+			<img src={data.usecases2image} class='rounded-md' style="object-fit: cover; height: 200px;">
+		
+				<span class=" font-bold text-2xl mt-5 text-gray-800 dark:text-gray-200">
+			{data.usecases2head}
+				</span>
+			  <p class="mt-2 text-sm text-gray-500">{data.usecases2subhead}</p>
+			  <a
+			  class=" btn bg-primary-500 border-primary-500 text-white text-mn font-semibold hover:bg-secondary-400 border-2 shadow-md mt-5"
+			  href= "https://ycbh.in/"
+			  target="_blank"
+			  >Know More
+			</a>
+			  
+		</div>
+		)}
+		<!-- End Card -->
+	
+
+		<!-- Card -->
+		{datas.map((data: any) =>
+		<div class="flex flex-col border-2  text-center rounded-xl p-8 border-primary-500 hover:border-yellow-300 hover:shadow-2xl">
+		
+			<img src={data.usecases3image} class='rounded-md' style="object-fit: cover; height: 200px;">
+			
+			<span class=" font-bold text-2xl mt-7 text-gray-800 dark:text-gray-200">
+				{data.usecases3head}
+			</span>
+		  <p class="mt-1 text-sm text-gray-500">{data.usecases3subhead}</p>
+		  <a
+			  class=" btn bg-primary-500 border-primary-500 text-white text-mn font-semibold hover:bg-secondary-400 border-2 shadow-md mt-5"
+			  href= "https://organicfarmingtraining.justlearnindia.in/"
+			  target="_blank"
+			  >Know More
+			</a>
+		</div>
+		)}
+		
+
+	  <!-- End Grid -->
+	</div>
+	</div>
+
+<!-- End Usecases -->
+</section>
+
+
+
+
+<div class="max-w-4xl mb-10 mt-10 mx-5 md:mx-auto sm:text-center lg:max-w-7xl md:mb-12">
+		
+		<h2 class="text-4xl md:text-5xl font-bold mx-10 md:mx-auto leading-tighter tracking-tighter mb-4 font-heading">
+			Photo Gallery
+		</h2>
+
+		<div class="owl-one img-carousel owl-carousel owl-theme my-10 max-w-6xl mx-auto">
+			<div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.51.34%20PM%20(6).jpeg?alt=media&token=4301a35b-bbfc-4b51-9e99-42bfaf57ba4c'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.22.33%20PM.jpeg?alt=media&token=a044e680-39fc-42e6-b7f1-c2bf5d8c1e15'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.22.33%20PM%20(1).jpeg?alt=media&token=a749cea3-efef-402b-923b-c371c819dde7'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.22.34%20PM%20(1).jpeg?alt=media&token=c22b71b9-532b-4454-8ec5-f6a357b9b84e'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.22.34%20PM.jpeg?alt=media&token=517d812e-119b-46be-acc3-5c1bd670e12a'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.22.35%20PM%20(1).jpeg?alt=media&token=0be68b81-9824-4109-970f-421c60cf54ff'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.22.35%20PM.jpeg?alt=media&token=b753c05a-81aa-49e9-a206-ffeca7ec5c25'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.22.36%20PM%20(1).jpeg?alt=media&token=25057f41-4394-462f-954b-1e5c62f89a09'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.22.36%20PM.jpeg?alt=media&token=f9c17d83-c50d-4d3a-a124-dc64d6fe1240'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.22.37%20PM%20(1).jpeg?alt=media&token=5cb5b38a-779a-404a-8a55-581438b1e6ac'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.22.37%20PM.jpeg?alt=media&token=5431a751-bfe6-402a-80d9-d5763fcdcb16'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.22.38%20PM%20(1).jpeg?alt=media&token=a9669cd9-73af-47e6-bf2c-a3ea695a95e7'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.22.38%20PM.jpeg?alt=media&token=d78e5455-3132-4d19-b257-2f4cbf4bf060'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.22.40%20PM.jpeg?alt=media&token=75e88820-818b-48d8-b71d-8eb97ca9f9ae'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/website-storage-account.appspot.com/o/Just%20Learn%20Farming%2Fnew%20set%2FScreenshot%202023-04-09%20at%207.41.46%20PM.png?alt=media&token=2b514708-2167-47c2-8d09-9cc5e2a344e4'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.22.41%20PM%20(1).jpeg?alt=media&token=0a000c1d-9332-4994-80c4-c51fb876b386'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.22.42%20PM.jpeg?alt=media&token=1cb5d654-9880-494a-94e2-ce4ab3f83743'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.22.36%20PM.jpeg?alt=media&token=f9c17d83-c50d-4d3a-a124-dc64d6fe1240'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.22.44%20PM%20(1).jpeg?alt=media&token=ffd956ca-a095-4fb9-9835-718c2289ac8c'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.22.52%20PM.jpeg?alt=media&token=39c4bc7c-da89-44a2-ae31-1953bdd21325'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.22.53%20PM.jpeg?alt=media&token=c641af85-f1ee-4889-a291-6d883a5c8670'class="w-full rounded-md">
+</div>
+<div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.22.56%20PM.jpeg?alt=media&token=cfe94c2c-6d3f-4b91-ab79-3f4fc3b3ee29'class="w-full rounded-md">
+</div>
+
+<div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.23.01%20PM%20(1).jpeg?alt=media&token=42f13de8-a6aa-4caa-b32f-78377fb491af'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.23.01%20PM.jpeg?alt=media&token=063fabe8-41fa-41f4-990c-ebc8fe492f36'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.23.03%20PM.jpeg?alt=media&token=8071a86a-fb4f-403a-bbc6-d239e66d9c3b'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.23.04%20PM.jpeg?alt=media&token=65929639-f7f3-4112-9a3b-477a9ae75c00'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.23.07%20PM.jpeg?alt=media&token=878f21c9-861f-487c-bfee-03ac8859f79d'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.22.54%20PM.jpeg?alt=media&token=5a63af07-101f-456f-b129-f2c3a08e69d7'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.23.09%20PM.jpeg?alt=media&token=8a233cec-fc2f-4fd6-aae2-827a0b0be57e'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.22.54%20PM.jpeg?alt=media&token=5a63af07-101f-456f-b129-f2c3a08e69d7'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.49.42%20PM%20(1).jpeg?alt=media&token=424bc8a7-2f6b-4c81-af55-4ccabaccaa89'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.49.42%20PM.jpeg?alt=media&token=355d3b0f-59c5-4047-a090-75f0479f94c9'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.51.33%20PM.jpeg?alt=media&token=b72c71cf-4673-4833-b4b0-87853c84cf61'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.51.34%20PM%20(1).jpeg?alt=media&token=43a9194c-f860-43db-9795-5a55d10d79c8'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.51.34%20PM%20(4).jpeg?alt=media&token=58853878-f497-4de3-9cf7-2a6dccfce60a'class="w-full rounded-md">
+</div>
+
+
+
+
+		<div class="item">
+			
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.51.34%20PM%20(5).jpeg?alt=media&token=c8713c1a-bba0-4bea-8946-c002882168bf'class="w-full rounded-md">
+			
+
+		
+		</div>
+		<div class="item">
+			
+			<img src='https://firebasestorage.googleapis.com/v0/b/website-storage-account.appspot.com/o/Just%20Learn%20Farming%2FWhatsApp%20Image%202023-04-06%20at%204.43.06%20PM.jpeg?alt=media&token=a4c12f89-f482-4007-bb7a-bfd04639b647'class="w-full rounded-md">
+		
+		</div>
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.54.54%20PM.jpeg?alt=media&token=b0e7c1a7-f528-4dc7-b200-00c5f0a007b9'class="w-full rounded-md">
+				
+		</div>
+	
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.54.55%20PM%20(2).jpeg?alt=media&token=deee2fce-a83e-40b2-b40c-d37fed546ab8' class="w-full rounded-md">
+		</div>
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.54.55%20PM%20(3).jpeg?alt=media&token=c4d6ecb5-c7fa-44f4-8a78-6ca793d9e3cd' class="w-full rounded-md">
+				
+		</div>
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.54.55%20PM%20(4).jpeg?alt=media&token=9c242965-023b-4a26-b963-01782ea06194' class="w-full rounded-md">
+				
+		</div>
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.54.55%20PM%20(5).jpeg?alt=media&token=e74f8f61-cd3d-4ca9-b9d8-84ecc42079f2' class="w-full rounded-md">
+				
+		</div>
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.54.55%20PM%20(6).jpeg?alt=media&token=55e4ee45-dc25-4c01-9dd7-4a65f0264239' class="w-full rounded-md">
+				
+		</div>
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.54.55%20PM%20(7).jpeg?alt=media&token=abed67b1-c51a-40f7-a37e-d48ef8fe1db0' class="w-full rounded-md">
+				
+		</div>
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.54.55%20PM%20(8).jpeg?alt=media&token=104e089b-fab2-4e2a-98ab-52ad304f88ce' class="w-full rounded-md">
+				
+		</div>
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.54.55%20PM%20(9).jpeg?alt=media&token=2d530393-896c-4655-9d87-040b47436f81' class="w-full rounded-md">
+				
+		</div>
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.58.08%20PM%20(1).jpeg?alt=media&token=617f53de-d310-4c16-bb85-73e3cbff14f1' class="w-full rounded-md">
+				
+		</div>
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%207.07.09%20PM%20(1).jpeg?alt=media&token=2eca1f51-2c7b-4dad-9ecc-1c3860f2d44f' class="w-full rounded-md">
+				
+		</div>
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/website-storage-account.appspot.com/o/Just%20Learn%20Farming%2FWhatsApp%20Image%202023-04-05%20at%207.27.49%20PM.jpeg?alt=media&token=a8d55ff7-c627-4403-9f10-207960ba5581' class="w-full rounded-md">
+				
+		</div>
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/website-storage-account.appspot.com/o/Just%20Learn%20Farming%2FWhatsApp%20Image%202023-03-22%20at%201.36.40%20PM.jpeg?alt=media&token=d98f636e-19dc-4e44-9516-a5356a175e37' class="w-full rounded-md">
+				
+		</div>
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%207.12.03%20PM%20(2).jpeg?alt=media&token=977984f9-7c0d-4544-b790-cc68acb55b0c' class="w-full rounded-md">
+				
+		</div>
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%207.10.10%20PM%20(2).jpeg?alt=media&token=87615d41-e87c-460d-ad7c-79712c7ef18e' class="w-full rounded-md">
+				
+		</div>
+		</div>
+	</div>
+
+
+
+
+
+	<div class="max-w-3xl mb-5 mt-24 mx-5 md:mx-auto sm:text-center lg:max-w-7xl ">
+		
+		<h2 class="text-4xl md:text-5xl font-bold mx-10 md:mx-auto leading-tighter tracking-tighter mb-6 font-heading">
+			Our Clients
+		</h2>
+
+		<div class="owl-two img-carousel owl-carousel owl-theme my-10 max-w-5xl mx-auto">
+		<div class="item">
+	
+				<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/logos%2FAMBUJACEM.NS-bc1a2948.png?alt=media&token=7cfde3b8-b3ab-4885-90fd-0f58f67e53f5'class="w-full rounded-md">
+		</div>
+		<div class="item">
+			
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/logos%2Fimage%2080.png?alt=media&token=6a548534-1405-40e0-bb37-0ec9183341e4'class="w-full rounded-md">
+			
+
+		
+		</div>
+		<div class="item">
+			
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/logos%2Fimage%2081.png?alt=media&token=e2da224f-e24f-4a04-b7c4-956e3756b397'class="w-full rounded-md">
+		
+		</div>
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/logos%2Fimage%2082.png?alt=media&token=2384303e-f576-4a40-9936-1d3e2fcd1fa4'class="w-full rounded-md">
+				
+		</div>
+	
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/logos%2Fimage%2083.png?alt=media&token=8b5c8a5f-b612-4a00-a7dc-5fa574d77756' class="w-full rounded-md">
+		</div>
+		
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/logos%2Fimage%2085.png?alt=media&token=6491b5e0-6a4b-4878-8c79-c92861052009' class="w-full rounded-md">
+				
+		</div>
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/logos%2Fimage%2086.png?alt=media&token=fb80a6d9-9f1a-4d32-b4d9-a94e0555d0ac' class="w-full rounded-md">
+				
+		</div>
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/logos%2Fimage%2087.png?alt=media&token=3011b829-03e8-4350-90d8-6dbfdbf1fc5a' class="w-full rounded-md">
+				
+		</div>
+
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/logos%2Fimage%2088.png?alt=media&token=9936ca32-226c-42dc-b433-8bbac0d9b616' class="w-full rounded-md">
+				
+		</div>
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/logos%2Fimage%2089.png?alt=media&token=cc5aaec0-c8cb-470c-a2a0-b111c36ae6a1' class="w-full rounded-md">
+				
+		</div>
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/logos%2Fimage%2090.png?alt=media&token=5b7925d4-cf2c-44e9-b603-e970e090c19f' class="w-full rounded-md">
+				
+		</div>
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/logos%2Fimage%2091.png?alt=media&token=37820436-b46a-49df-b7f3-e85233e67e30' class="w-full rounded-md">
+				
+		</div>
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/logos%2Fimage%2092.png?alt=media&token=4ccfbd09-4276-453e-9565-889b8c981268' class="w-full rounded-md">
+				
+		</div>
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/logos%2Fimage%2093.png?alt=media&token=3b505f97-2155-4867-930e-e3ce3f5d9ddd' class="w-full rounded-md">
+				
+		</div>
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/logos%2Fimage%2094.png?alt=media&token=886623b3-ace4-4bcf-a6e9-0e7071961cff' class="w-full rounded-md">
+				
+		</div>
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/logos%2Fimage%2095.png?alt=media&token=d35ef13e-9504-4fb9-967d-02320c4d3a1f' class="w-full rounded-md">
+				
+		</div>
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/logos%2Fimage%2096.png?alt=media&token=dddfea76-3942-4888-be0c-6aa0cbdcce9f' class="w-full rounded-md">
+				
+		</div>
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/logos%2Fimage%2097.png?alt=media&token=8cd9892b-ef10-43e7-88cb-ee62cf9fc761' class="w-full rounded-md">
+				
+		</div>
+		
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/logos%2Fimage%2099.png?alt=media&token=47ca3673-742b-4436-a5c1-ed2f7cf1717c' class="w-full rounded-md" style='height:80%'>
+				
+		</div>
+		</div>
+	</div>
+	
+
+
+
+
+	<!-- FAQ SECTION -->
+	<section id="faq">
+		<div class="px-4 py-16 mx-auto max-w-6xl lg:py-16">
+			<div class="max-w-xl sm:mx-auto lg:max-w-2xl">
+				<div class="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
+					<h2 class="max-w-lg mb-4 text-3xl font-bold leading-none tracking-tight sm:text-4xl md:mx-auto font-heading">
+						Frequently Asked Questions
+					</h2>
+				</div>
+			</div>
+			<div class="max-w-screen-xl sm:mx-auto">
+				<div class="grid grid-cols-1 gap-x-8 gap-y-8 lg:gap-x-16 md:grid-cols-2">
+					
+					<!-- FAQ 1 -->
+					<div class="space-y-8">
+						<div>
+
+							{datas.map((data: any) => 
+							<p class="mb-4 text-xl font-bold">
+								<Icon name="tabler:arrow-down-right" class="w-7 h-7 text-primary-500 inline-block icon-bold" />
+								 {data.q1}
+							</p>
+							<p class="text-gray-700 dark:text-gray-400 mb-2">
+								{data.a1}
+							</p>
+							)}
+
+						</div>
+					</div>
+
+					<!-- FAQ 2 -->
+					<div class="space-y-8">
+						<div>
+							{datas.map((data: any) => 
+							<p class="mb-4 text-xl font-bold">
+								<Icon name="tabler:arrow-down-right" class="w-7 h-7 text-primary-500 inline-block icon-bold" />
+								 {data.q2}
+							</p>
+							<p class="text-gray-700 dark:text-gray-400 mb-2">
+								{data.a2}
+							</p>
+							)}
+						</div>
+					</div>
+
+					<!-- FAQ 3 -->
+					<div class="space-y-8">
+						<div>
+							{datas.map((data: any) => 
+								<p class="mb-4 text-xl font-bold">
+									<Icon name="tabler:arrow-down-right" class="w-7 h-7 text-primary-500 inline-block icon-bold" />
+									 {data.q3}
+								</p>
+								<p class="text-gray-700 dark:text-gray-400 mb-2">
+									{data.a3}
+								</p>
+							)}
+						</div>
+					</div>
+
+					<!-- FAQ 4 -->
+					<div class="space-y-8">
+						<div>
+							{datas.map((data: any) => 
+								<p class="mb-4 text-xl font-bold">
+									<Icon name="tabler:arrow-down-right" class="w-7 h-7 text-primary-500 inline-block icon-bold" />
+									 {data.q4}
+								</p>
+								<p class="text-gray-700 dark:text-gray-400 mb-2">
+									{data.a4}
+								</p>
+							)}
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+
+
+
+
+
+
+
+	<!-- CTA SECTION -->
+	<section id="cta" class="relative">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 ">
+			<div class="py-4 md:py-10 mb-10">
+				<div class="max-w-4xl mx-auto text-center p-6 rounded-md shadow-xl bg-primary-500">
+					<h2 class="text-4xl text-slate-100 dark:text-slate-200 md:text-4xl font-bold leading-tighter tracking-tighter mb-4 font-heading">
+						{datas.map((data: any) => <span> {data.cta} </span> )}
+					</h2>
+					<p class="text-xl text-slate-200 dark:text-slate-300">
+						
+					</p>
+
+					<ul class="mt-4 grid sm:grid-cols-2 lg:grid-cols-2 gap-2 mx-auto lg:items-center max-w-[30rem]">
+					<li>
+						<a href="https://play.google.com/store/apps/details?id=com.justrojgar.courses"
+							target="_blank"
+						>
+						<img src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'
+							alt="Google Play Link" style="max-width: 14rem;" class="rounded-md inline-flex items-center">
+						</a>
+					</li>
+					<li>
+						<a href="https://apps.apple.com/us/app/just-learn/id1556804585"
+							target="_blank"
+						>
+						<img src='https://firebasestorage.googleapis.com/v0/b/website-storage-account.appspot.com/o/pribe%2Fapp-store-png-logo-33107.png?alt=media&token=9d6b8d50-4e55-4475-a5c3-441e68126b6e'
+							alt="App Store Link" style="max-width: 13rem;" class="rounded-md inline-flex items-center">
+						</a>
+					</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+
+
+
+
+	<!-- FOOTERS SECTION -->
+	<footer class="border-t border-gray-200 dark:border-slate-800">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6">
+			<div class="grid grid-cols-12 gap-4 gap-y-8 sm:gap-8 py-8 md:py-12">
+				<div class="col-span-12 lg:col-span-4">
+					{datas.map((data: any) => 
+					<div class="mb-2">
+					
+						<a class="inline-block font-bold text-xl" href={getHomePermalink()}>
+							Just Learn India, part of Just Rojgar Solutions Pvt. Ltd.
+						</a>
+				
+					</div>
+					<div class="text-sm text-gray-600">
+								
+						<a class="text-gray-600 hover:text-gray-700 dark:text-gray-400 hover:underline transition duration-150 ease-in-out" href= {data.ctalink} target="_blank"> 
+							Indian Institute of Management- IIML, 1 F , B1,  
+Institutional Area, Sector 62, Noida – 201307 (U.P)- India
+							</a>
+				
+					</div>
+					)}
+			
+					<div class="md:flex md:items-center md:justify-between py-6 md:py-8">
+						<ul class="flex md:order-1 md:mb-0">
+							
+							<li>
+								<a
+									class="text-red-400  rounded-lg text-sm p-2.5 inline-flex items-center"
+									aria-label="Email"
+									href='mailto:info@justlearnindia.com'
+									target="_blank"
+								>
+									<Icon name="tabler:brand-gmail" class="w-8 h-8" />
+								</a>
+							</li>
+							<li>
+								<a
+									class="text-blue-400  rounded-lg text-sm p-2.5 inline-flex items-center"
+									aria-label="Phone"
+									href="https://www.facebook.com/justlearnindia"
+									target="_blank"
+								>
+									<Icon name="tabler:brand-facebook" class="w-8 h-8" />
+								</a>
+							</li>
+							<li>
+								<a
+									class="text-blue-600  rounded-lg text-sm p-2.5 inline-flex items-center"
+									aria-label="Phone"
+									href="https://www.linkedin.com/in/justlearn"
+									target="_blank"
+								>
+									<Icon name="tabler:brand-linkedin" class="w-8 h-8" />
+								</a>
+							</li>
+							<li>
+								<a
+									class="text-orange-400  rounded-lg text-sm p-2.5 inline-flex items-center"
+									aria-label="Phone"
+									href="tel:+91 9643306888"
+									target="_blank"
+								>
+									<Icon name="tabler:phone" class="w-8 h-8" />
+								</a>
+							</li>
+						
+							
+						</ul>
+						
+					</div>
+				
+
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<script async src="https://tally.so/widgets/embed.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script>
+
+		$('.owl-one').owlCarousel({
+		loop:true,
+		margin:10,
+		dots: false,
+		autoplay: true,
+		autoplayTimeout: 3000,	
+		stagePadding:10,
+		responsive:{
+			0:{
+				items:1
+			},
+			600:{
+				items:2
+			},
+			1000:{
+				items:3
+			}
+		}
+	})
+</script>
+<script>
+	$('.owl-two').owlCarousel({
+		loop:true,
+		margin:40,
+		dots: false,
+		autoplay: true,
+		autoplayTimeout: 3000,	
+		stagePadding:30,
+		responsive:{
+			0:{
+				items:1
+			},
+			600:{
+				items:2
+			},
+			1000:{
+				items:3
+			}
+		}
+	})
+	</script>
+	<script>
+	$(document).ready(function() {
+    $('#scrollUpButton').click(function() {
+        $('html, body').animate({scrollTop: 0}, 'slow');
+    });
+
+    $('#scrollDownButton').click(function() {
+        $('html, body').animate({scrollTop: $(document).height()}, 'slow');
+    });
+});
+</script>
+
+	
+</Layout>
+    

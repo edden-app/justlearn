@@ -1,0 +1,79 @@
+---
+import { Icon } from 'astro-icon';
+import Picture from '~/components/core/Picture.astro';
+---
+
+<section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-6xl">
+	<div class="grid gap-6 row-gap-10 md:grid-cols-2">
+		<div class="md:pb-6 md:pr-16">
+			<h2 class="mb-8 text-3xl lg:text-4xl font-bold font-heading">
+				How to get your loan approved?
+			</h2>
+			<div class="flex">
+				<div class="flex flex-col items-center mr-4">
+					<div>
+						<div class="flex items-center justify-center w-12 h-12 rounded-full border-secondary-500 border-2">
+							<Icon name="tabler:phone" class="w-8 h-8 text-gray-600 dark:text-slate-200 " />
+						</div>
+					</div>
+					<div class="w-px h-full bg-gray-300 dark:bg-slate-500"></div>
+				</div>
+				<div class="pt-1 pb-8">
+					<p class="mb-2 text-2xl font-bold text-gray-900 dark:text-slate-300">Contact Us</p>
+					<p class="text-gray-700 font-normal">Reach out to us with your requirement to get expert guidance and hassle-free loan approval for all your commercial equipments and vehicle needs. </p>
+				</div>
+			</div>
+			<div class="flex">
+				<div class="flex flex-col items-center mr-4">
+					<div>
+						<div class="flex items-center justify-center w-12 h-12 rounded-full border-secondary-500 border-2">
+							<Icon name="tabler:notes" class="w-8 h-8 text-gray-600 dark:text-slate-200" />
+						</div>
+					</div>
+					<div class="w-px h-full bg-gray-300 dark:bg-slate-500"></div>
+				</div>
+				<div class="pt-1 pb-8">
+					<p class="mb-2 text-2xl font-bold text-gray-900 dark:text-slate-300">Documentation</p>
+					<p class="text-gray-700 font-normal">Now our team of experts help you curate all the requirement documents to ensure that your loan approval process takes no time.</p>
+				</div>
+			</div>
+			<div class="flex">
+				<div class="flex flex-col items-center mr-4">
+					<div>
+						<div class="flex items-center justify-center w-12 h-12 rounded-full border-secondary-500 border-2">
+							<Icon name="tabler:settings" class="w-8 h-8 text-gray-600 dark:text-slate-200" />
+						</div>
+					</div>
+					<div class="w-px h-full bg-gray-300 dark:bg-slate-500"></div>
+				</div>
+				<div class="pt-1 pb-8">
+					<p class="mb-2 text-2xl font-bold text-gray-900 dark:text-slate-300">Processing</p>
+					<p class="text-gray-700 font-normal">Now we circulate your loan proposal to all our partner banks and ensure speedy processing of your loan request.</p>
+				</div>
+			</div>
+			<div class="flex">
+				<div class="flex flex-col items-center mr-4">
+					<div>
+						<div class="flex items-center justify-center w-12 h-12 rounded-full border-primary-600 border-2">
+							<Icon name="tabler:bolt" class="w-8 h-8 text-gray-600 dark:text-slate-200 " />
+						</div>
+					</div>
+				</div>
+				<div class="pt-1">
+					<p class="mb-2 text-2xl font-bold text-gray-900 dark:text-slate-300">Approval</p>
+					<p class="text-gray-700 font-normal">Now we work closely with the partner banks to get your loan approved and get money dispatched to you within no time.</p>
+				</div>
+			</div>
+		</div>
+		<div class="relative">
+			<Picture
+				class="inset-0 object-cover object-top w-full rounded-md shadow-lg md:absolute md:h-full bg-gray-400 dark:bg-slate-700"
+				src={import('~/assets/images/handshake.jpg')}
+				widths={[400, 768]}
+				sizes="(max-width: 768px) 100vw, 432px"
+				alt="Astronaut"
+				aspectRatio="432:768"
+			/>
+		</div>
+	</div>
+</section>
