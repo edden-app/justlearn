@@ -28,5 +28,5 @@ jobs:
       run: npm run build
 
     - name: Deploy to Firebase
-      run: firebase deploy --token 1//0gXJ7sdahp8ZXCgYIARAAGBASNwF-L9IrMuMt1xmioNpVvNKk9IQZU6W5cZ1Ih-D7j6WFXCjfDz57CtZUmFaiPnsYjkRYlhGFNkk
+      run: firebase deploy --token 4/0Ab_5qll6-fw0MlD0mk7gzOP3vtseEEwlfBvWA-4H65P3jB0geyXcYljqhRtQxmru5W5J7A
 
