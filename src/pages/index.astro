@@ -9,7 +9,15 @@ import Steps from '~/components/widgets/Steps.astro'
 import ToggleTheme from '~/components/core/ToggleTheme.astro';
 import ToggleMenu from '~/components/core/ToggleMenu.astro';
 import Content from '~/components/widgets/Content.astro';
-
+import { db } from "../../lib/firebase";
+ import { query, collection, getDocs, where,} from "firebase/firestore";
+ 
+ //FIREBASE ADD THE DOCUMENT ID HERE 
+ const q = query(collection(db, "users"), where("id", "==", "justlearn"),);
+ 
+ const querySnapshot = await getDocs(q);
+ const datas = querySnapshot.docs.map((querySnapshot) => ({ ...querySnapshot.data(), id: querySnapshot.id }));
+ 
 
 const meta = {
 	title: SITE.title,
