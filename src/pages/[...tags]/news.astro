@@ -1,0 +1,380 @@
+---
+import { SITE } from '~/config.mjs';
+import { getCanonical, getHomePermalink } from '~/utils/permalinks';
+import Layout from '~/layouts/PageLayout.astro';
+
+import { Icon } from 'astro-icon';
+import Picture from '~/components/core/Picture.astro';
+import Steps from '~/components/widgets/Steps.astro'
+import ToggleTheme from '~/components/core/ToggleTheme.astro';
+import ToggleMenu from '~/components/core/ToggleMenu.astro';
+import Content from '~/components/widgets/Content.astro';
+
+const meta = {
+	title: SITE.title,
+	description: SITE.description,
+	canonical: getCanonical(getHomePermalink()),
+};
+---
+
+
+<Layout {meta}>
+
+	<!-- HEADER SECTION  -->
+
+	<header id="header" class="sticky top-0 z-40 flex-none mx-auto w-full bg-white md:bg-white/90 dark:bg-slate-900 dark:md:bg-slate-900/90 md:backdrop-blur-sm border-b dark:border-b-0">
+		<div class="py-3 px-3 mx-auto w-full md:flex md:justify-between max-w-6xl md:px-10">
+			<div class="flex justify-between">
+				<a class="flex items-center" href={getHomePermalink()}>
+					<img src="https://firebasestorage.googleapis.com/v0/b/website-storage-account.appspot.com/o/YCBH%2FWhatsApp_Image_2023-03-19_at_1.24.21_PM-removebg-preview.png?alt=media&token=938b2a6c-792e-4516-806f-64297833d255" alt="Company Logo" width="60" height="60" class="rounded-md">
+				
+
+				
+				
+				</a>
+				<div class="flex items-center md:hidden">
+					<!-- <ToggleTheme /> -->
+					<ToggleMenu />
+				</div>
+			</div>
+			<nav
+				class="items-center w-full md:w-auto hidden md:flex text-gray-600 dark:text-slate-200 h-screen md:h-auto"
+				aria-label="Main navigation"
+			>
+				<ul class="flex flex-col pt-8 md:pt-0 md:flex-row md:self-center w-full md:w-auto text-xl md:text-base">
+					
+		
+				<li>
+						<a class="font-medium hover:text-gray-900 dark:hover:text-white px-4 py-3 flex items-center transition duration-150 ease-in-out" href="#about" target="_blank">About us
+						</a>
+					</li>
+		<li>
+						<a class="font-medium hover:text-gray-900 dark:hover:text-white px-4 py-3 flex items-center transition duration-150 ease-in-out" href="/domains" target="_blank">Technical Domains
+						</a>
+					</li>
+					<li>
+						<a class="font-medium hover:text-gray-900 dark:hover:text-white px-4 py-3 flex items-center transition duration-150 ease-in-out" href="/news" target="_blank">News & Media
+						</a>
+					</li>
+					<li>
+
+	<li class="xl:hidden">
+						<a class="font-medium hover:text-gray-900 dark:hover:text-white px-4 py-3 flex items-center transition duration-150 ease-in-out" href="https://wa.me/919643306888?text=I%20checked%20out%20your%20website%20and%20I%27m%20interested" target="_blank">Contact us
+						</a>
+					</li>
+
+					<li>
+						<a class="btn bg-primary-500 ml-4 font-medium text-white px-6 hover:bg-yellow-400 py-3 flex items-center transition duration-150 ease-in-out" href="http://learning.justlearnindia.in/" target="_blank">Login to Portal
+						</a>
+					</li>
+				</ul>
+	</li>
+				</ul>
+				<div class="md:self-center flex items-center mb-4 md:mb-0 ml-2">
+					<div class="hidden items-center md:flex">
+						<!-- <a
+							href="https://www.linkedin.com/company/mrmarketapp/"
+							target="_blank"
+							class="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5"
+							aria-label="linkedin"
+						>
+							<Icon name="tabler:brand-linkedin" class="w-6 h-6" />
+						</a> -->
+						
+						<!-- <ToggleTheme iconClass="w-6 h-6" /> -->
+					</div>
+				</div>
+			</nav>
+		</div>
+	</header>
+
+	<div class="scrollButtons">
+		<button id="scrollUpButton" class="scrollButton">&#x25B2;</button>
+		<button id="scrollDownButton" class="scrollButton">&#x25BC;</button>
+	  </div>
+
+<section id="founders" class="relative astro-ZHCD62P5">
+        <div class="max-w-[80rem] px-4 sm:px-6 lg:px-8 lg:py-12 lg:pb-16 mx-auto astro-ZHCD62P5">
+          <!-- Title -->
+          <div class="max-w-3xl mx-auto text-center mb-5 mt-10 lg:mb-5 astro-ZHCD62P5">
+            <h2 class="text-4xl font-bold md:text-5xl md:leading-tight dark:text-white astro-ZHCD62P5"> <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-secondary-500 whitespace-nowrap astro-ZHCD62P5">News and Media
+            </span>
+            </h2>
+          </div>
+          <!-- End Title -->
+          
+          <!-- Grid -->
+          <div class="mt-5 grid sm:grid-cols-2 lg:grid-cols-2 gap-3 lg:items-center astro-ZHCD62P5">
+            <!-- Card -->
+            
+            <div class="flex flex-col text-center items-center rounded-xl p-5 astro-ZHCD62P5">
+                <img src="https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/news%2FWhatsApp%20Image%202023-05-12%20at%204.45.57%20PM.jpeg?alt=media&token=72a3dec1-4b05-4bd8-ba7e-8db91ba09092" class="astro-ZHCD62P5">
+                
+               
+ 
+        
+            </div>
+        
+        
+        
+            <!-- End Card -->
+        
+            <!-- Card -->
+            <div class="flex flex-col text-center items-center rounded-xl p-5 astro-ZHCD62P5">
+                <img src="https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/news%2FWhatsApp%20Image%202023-05-12%20at%204.46.13%20PM.jpeg?alt=media&token=cb7b5591-33c9-43ea-ba24-aa32429d7c4d" class="astro-ZHCD62P5">
+            </div>
+            <!-- End Card -->
+            <div class="flex flex-col text-center items-center rounded-xl p-5 astro-ZHCD62P5">
+                <img src="https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/news%2FWhatsApp%20Image%202023-05-12%20at%204.46.28%20PM.jpeg?alt=media&token=8ae237f0-3fd1-44aa-9b01-9a9ad6770b05" class="astro-ZHCD62P5">
+				<div class="mx-auto w-56 my-10 astro-ZHCD62P5">
+					<a class="btn bg-primary-500 ml-4 font-medium text-white px-6 hover:bg-yellow-400 py-3 flex items-center transition duration-150 ease-in-out astro-ZHCD62P5" href="https://kdipa.gov.kw/kdipa-receives-an-economic-delegation-from-the-republic-of-india/" target="_blank">Read the Full Article 
+									</a>
+			
+			
+								</div>
+
+
+
+            </div>
+
+			<div class="flex flex-col text-center items-center rounded-xl p-5 astro-ZHCD62P5">
+                <img src="https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/news%2Fimage%20217.png?alt=media&token=0a9af722-8f04-4654-8730-71ec47ebef4f" class="astro-ZHCD62P5">
+				<div class="mx-auto w-56 my-10 astro-ZHCD62P5">
+					<a class="btn bg-primary-500 ml-4 font-medium text-white px-6 hover:bg-yellow-400 py-3 flex items-center transition duration-150 ease-in-out astro-ZHCD62P5" href="https://m.economictimes.com/tech/technology/iim-lucknow-eic-picks-up-small-stake-in-just-rojgar-at-rs-80-crore-valuation/amp_articleshow/93819970.cms#appDwnldBanner" target="_blank">Read the Full Article 
+									</a>
+			
+			
+								</div>
+            </div>
+    
+			<div class="flex flex-col text-center items-center rounded-xl p-5 astro-ZHCD62P5">
+                <img src="https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/news%2Fimage%20218.png?alt=media&token=7d800089-74a3-4b38-918d-15e584465516" class="astro-ZHCD62P5">
+				<div class="mx-auto w-56 my-10 astro-ZHCD62P5">
+					<a class="btn bg-primary-500 ml-4 font-medium text-white px-6 hover:bg-yellow-400 py-3 flex items-center transition duration-150 ease-in-out astro-ZHCD62P5" href="https://m.economictimes.com/tech/technology/iim-lucknow-eic-picks-up-small-stake-in-just-rojgar-at-rs-80-crore-valuation/amp_articleshow/93819970.cms" target="_blank">Read the Full Article 
+									</a>
+			
+			
+								</div>
+            </div>
+            <!-- Card -->
+			<div class="flex flex-col text-center items-center rounded-xl p-5 astro-ZHCD62P5">
+                <img src="https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/new%20funding%2FWhatsApp%20Image%202023-07-20%20at%2010.20.32%20AM.jpeg?alt=media&token=5985406c-cd55-4ee1-84e7-647de71a1c0e" class="astro-ZHCD62P5">
+				<div class="mx-auto w-56 my-10 astro-ZHCD62P5">
+					<a class="btn bg-primary-500 ml-4 font-medium text-white px-6 hover:bg-yellow-400 py-3 flex items-center transition duration-150 ease-in-out astro-ZHCD62P5" href="https://www.linkedin.com/posts/department-for-promotion-of-industry-and-internal-trade_just-learn-raised-inr-163-crores-usd-198330-activity-7087027557128187905-EClZ?utm_source=share&utm_medium=member_ios" target="_blank">Read the Full Article 
+									</a>
+			
+			
+								</div>
+            </div>
+
+			<div class="flex flex-col text-center items-center rounded-xl p-5 astro-ZHCD62P5">
+                <img src="https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/new%20funding%2FWhatsApp%20Image%202023-07-20%20at%2010.20.33%20AM%20(1).jpeg?alt=media&token=5a8135e0-8604-4fda-bb78-e5ba58b5e5a3" class="astro-ZHCD62P5">
+				<div class="mx-auto w-56 my-10 astro-ZHCD62P5">
+					<a class="btn bg-primary-500 ml-4 font-medium text-white px-6 hover:bg-yellow-400 py-3 flex items-center transition duration-150 ease-in-out astro-ZHCD62P5" href="https://www.linkedin.com/posts/invest-india_just-learn-raised-inr-163-crores-usd-198330-activity-7087074143354986496-Fp9D?utm_source=share&utm_medium=member_ios" target="_blank">Read the Full Article 
+									</a>
+			
+			
+								</div>
+            </div>
+
+			<div class="flex flex-col text-center items-center rounded-xl p-5 astro-ZHCD62P5">
+                <img src="https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/new%20funding%2FWhatsApp%20Image%202023-07-20%20at%2010.20.33%20AM%20(2).jpeg?alt=media&token=7322382b-51ce-4e0f-954a-3b9a312cc70d" class="astro-ZHCD62P5">
+				<div class="mx-auto w-56 my-10 astro-ZHCD62P5">
+					<a class="btn bg-primary-500 ml-4 font-medium text-white px-6 hover:bg-yellow-400 py-3 flex items-center transition duration-150 ease-in-out astro-ZHCD62P5" href="https://www.linkedin.com/posts/startupinup_just-learn-raised-inr-163-crores-usd-198330-activity-7086679751511162880-ufzc?utm_source=share&utm_medium=member_ios" target="_blank">Read the Full Article 
+									</a>
+			
+			
+								</div>
+            </div>
+
+			<div class="flex flex-col text-center items-center rounded-xl p-5 astro-ZHCD62P5">
+                <img src="https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/new%20funding%2FWhatsApp%20Image%202023-07-20%20at%2010.20.33%20AM.jpeg?alt=media&token=8dc3cdf6-54fa-442e-bb97-412973956f50" class="astro-ZHCD62P5">
+				<div class="mx-auto w-56 my-10 astro-ZHCD62P5">
+					<a class="btn bg-primary-500 ml-4 font-medium text-white px-6 hover:bg-yellow-400 py-3 flex items-center transition duration-150 ease-in-out astro-ZHCD62P5" href="https://www.linkedin.com/posts/cell-for-ipr-promotion-management-cipam_just-learn-raised-inr-163-crores-usd-198330-activity-7087026974707097601-N3q0?utm_source=share&utm_medium=member_ios" target="_blank">Read the Full Article 
+									</a>
+			
+			
+								</div>
+            </div>
+
+			<div class="flex flex-col text-center items-center rounded-xl p-5 astro-ZHCD62P5">
+                <img src="https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/new%20funding%2FWhatsApp%20Image%202023-07-20%20at%2010.21.25%20AM.jpeg?alt=media&token=b58c6858-cb64-4c4e-99c5-25236dcb8698" class="astro-ZHCD62P5">
+				<div class="mx-auto w-56 my-10 astro-ZHCD62P5">
+					<a class="btn bg-primary-500 ml-4 font-medium text-white px-6 hover:bg-yellow-400 py-3 flex items-center transition duration-150 ease-in-out astro-ZHCD62P5" href="https://www.linkedin.com/posts/invest-india_inthenews-investinindia-investindia-activity-7087651062102319104-vBAU?utm_source=share&utm_medium=member_ios" target="_blank">Read the Full Article 
+									</a>
+			
+			
+								</div>
+            </div>
+
+			<div class="flex flex-col text-center items-center rounded-xl p-5 astro-ZHCD62P5">
+                <img src="https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/new%20funding%2FScreenshot%202023-07-20%20at%203.00.29%20PM.png?alt=media&token=93d03ee4-7d33-45dc-8600-61e2e467b1da" class="astro-ZHCD62P5">
+				<div class="mx-auto w-56 my-10 astro-ZHCD62P5">
+					<a class="btn bg-primary-500 ml-4 font-medium text-white px-6 hover:bg-yellow-400 py-3 flex items-center transition duration-150 ease-in-out astro-ZHCD62P5" href="https://www.ptinews.com/pti/Just-Learn--raised-INR-1-63-Crores---USD-198330-as-FDI--Foreign-Direct-Investment--in-Pre-Series-A-Funding-at-a-Valuation-of-INR-100-08-Crores---USD-12-2-Million/63553.html" target="_blank">Read the Full Article 
+									</a>
+			
+			
+								</div>
+            </div>
+
+			<div class="flex flex-col text-center items-center rounded-xl p-5 astro-ZHCD62P5">
+                <img src="https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/new%20funding%2FScreenshot%202023-07-20%20at%203.00.52%20PM.png?alt=media&token=2231555e-ff74-4404-aae6-738551bf04e9" class="astro-ZHCD62P5">
+				<div class="mx-auto w-56 my-10 astro-ZHCD62P5">
+					<a class="btn bg-primary-500 ml-4 font-medium text-white px-6 hover:bg-yellow-400 py-3 flex items-center transition duration-150 ease-in-out astro-ZHCD62P5" href="https://www.theweek.in/wire-updates/business/2023/07/17/dcm26-just-learn.amp.html" target="_blank">Read the Full Article 
+									</a>
+			
+			
+								</div>
+            </div>
+
+			<div class="flex flex-col text-center items-center rounded-xl p-5 astro-ZHCD62P5">
+                <img src="https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/new%20funding%2FScreenshot%202023-07-24%20at%2011.22.41%20AM.png?alt=media&token=908bedf5-007e-4cdb-9b5b-318a2c7973f0" class="astro-ZHCD62P5">
+				<div class="mx-auto w-56 my-10 astro-ZHCD62P5">
+					<a class="btn bg-primary-500 ml-4 font-medium text-white px-6 hover:bg-yellow-400 py-3 flex items-center transition duration-150 ease-in-out astro-ZHCD62P5" href="https://twitter.com/investindia/status/1681884822946586624?s=48" target="_blank">Read the Full Article 
+									</a>
+			
+			
+								</div>
+            </div>
+            
+			<div class="flex flex-col text-center items-center rounded-xl p-5 astro-ZHCD62P5">
+				<iframe width="100%" height="315px" src="https://www.youtube.com/embed/_kPmx6sK3YQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="astro-ZHCD62P5"></iframe>
+				
+            </div>
+
+            
+			<div class="flex flex-col text-center items-center rounded-xl p-5 astro-ZHCD62P5">
+				<iframe width="100%" height="315px" src="https://www.youtube.com/embed/U74fnnZuC8M" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="astro-ZHCD62P5"></iframe>
+				
+            </div>
+
+			<div class="flex flex-col text-center items-center rounded-xl p-5 astro-ZHCD62P5">
+				<iframe width="100%" height="315px" src="https://www.youtube.com/embed/AWNHF_O0gek" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="astro-ZHCD62P5"></iframe>
+				
+            </div>
+
+			<div class="flex flex-col text-center items-center rounded-xl p-5 astro-ZHCD62P5">
+				<iframe width="100%" height="315px" src="https://www.youtube.com/embed/bFWfr_mHtD4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="astro-ZHCD62P5"></iframe>
+				
+            </div>
+
+			<div class="flex flex-col text-center items-center rounded-xl p-5 astro-ZHCD62P5">
+				<iframe width="100%" height="315px" src="https://www.youtube.com/embed/e7vb5wH2G-4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="astro-ZHCD62P5"></iframe>
+				
+            </div>
+
+
+			<div class="flex flex-col text-center items-center rounded-xl p-5 astro-ZHCD62P5">
+				<iframe width="100%" height="315px" src="https://www.youtube.com/embed/VO2o7ujobY0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="astro-ZHCD62P5"></iframe>
+				
+            </div>
+
+			<div class="flex flex-col text-center items-center rounded-xl p-5 astro-ZHCD62P5">
+				<iframe width="100%" height="315px" src="https://www.youtube.com/embed/s38UopRkzaA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="astro-ZHCD62P5"></iframe>
+				
+            </div>
+
+
+			<div class="flex flex-col text-center items-center rounded-xl p-5 astro-ZHCD62P5">
+				<iframe width="100%" height="315px" src="https://www.youtube.com/embed/EJ2LcUq412Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="astro-ZHCD62P5"></iframe>
+				
+            </div>
+
+			<div class="flex flex-col text-center items-center rounded-xl p-5 astro-ZHCD62P5">
+				<iframe width="100%" height="315px" src="https://www.youtube.com/embed/Q8HjXacLB7s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="astro-ZHCD62P5"></iframe>
+				
+            </div>
+
+			<div class="flex flex-col text-center items-center rounded-xl p-5 astro-ZHCD62P5">
+				<iframe width="100%" height="315px" src="https://www.youtube.com/embed/Dg9i56gp2x8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="astro-ZHCD62P5"></iframe>
+				
+            </div>
+			<div class="flex flex-col text-center items-center rounded-xl p-5 astro-ZHCD62P5">
+				<iframe width="100%" height="315px" src="https://www.youtube.com/embed/LLbB-NC8R4w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="astro-ZHCD62P5"></iframe>
+				
+            </div>
+
+			<div class="flex flex-col text-center items-center rounded-xl p-5 astro-ZHCD62P5">
+				<iframe width="100%" height="315px" src="https://www.youtube.com/embed/rTaDyC9qZBM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="astro-ZHCD62P5"></iframe>
+				
+            </div>
+
+			<div class="flex flex-col text-center items-center rounded-xl p-5 astro-ZHCD62P5">
+				<iframe width="100%" height="315px" src="https://www.youtube.com/embed/rwm_OdaVvgI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="astro-ZHCD62P5"></iframe>
+				
+            </div>
+
+
+
+
+
+
+
+            </div>
+        </div>
+
+
+
+  </section><footer class="border-t border-gray-200 dark:border-slate-800 astro-ZHCD62P5">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 astro-ZHCD62P5">
+			<div class="grid grid-cols-12 gap-4 gap-y-8 sm:gap-8 py-8 md:py-12 astro-ZHCD62P5">
+				<div class="col-span-12 lg:col-span-4 astro-ZHCD62P5">
+					<div class="mb-2 astro-ZHCD62P5">
+					
+						<a class="inline-block font-bold text-xl astro-ZHCD62P5" href="/">
+							Just Learn India, a product of Just Rojgar Solutions Pvt. Ltd.
+						</a>
+				
+					</div><div class="text-sm text-gray-600 astro-ZHCD62P5">
+								
+						<a class="text-gray-600 hover:text-gray-700 dark:text-gray-400 hover:underline transition duration-150 ease-in-out astro-ZHCD62P5" href="https://wa.me/919643306888?text=I%20checked%20out%20your%20website%20and%20I'm%20interested." target="_blank"> 
+							Indian Institute of Management- IIML, 1 F , B1,  
+Institutional Area, Sector 62, Noida – 201307 (U.P)- India
+							</a>
+				
+					</div>
+			
+					<div class="md:flex md:items-center md:justify-between py-6 md:py-8 astro-ZHCD62P5">
+						<ul class="flex md:order-1 md:mb-0 astro-ZHCD62P5">
+							
+							<li class="astro-ZHCD62P5">
+								<a class="text-red-400  rounded-lg text-sm p-2.5 inline-flex items-center astro-ZHCD62P5" aria-label="Email" href="mailto:info@justlearnindia.com" target="_blank">
+									<svg viewBox="0 0 24 24" class="w-8 h-8 astro-ZHCD62P5" astro-icon="tabler:brand-gmail"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="icon-tabler"><path d="M16 20h3a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1h-3v16zM5 20h3V4H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1zM16 4l-4 4-4-4"/><path d="m4 6.5 8 7.5 8-7.5"/></g></svg>
+								</a>
+							</li>
+							<li class="astro-ZHCD62P5">
+								<a class="text-blue-400  rounded-lg text-sm p-2.5 inline-flex items-center astro-ZHCD62P5" aria-label="Phone" href="https://www.facebook.com/justlearnindia" target="_blank">
+									<svg viewBox="0 0 24 24" class="w-8 h-8 astro-ZHCD62P5" astro-icon="tabler:brand-facebook"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 10v4h3v7h4v-7h3l1-4h-4V8a1 1 0 0 1 1-1h3V3h-3a5 5 0 0 0-5 5v2H7"/></svg>
+								</a>
+							</li>
+							<li class="astro-ZHCD62P5">
+								<a class="text-blue-600  rounded-lg text-sm p-2.5 inline-flex items-center astro-ZHCD62P5" aria-label="Phone" href="https://www.linkedin.com/in/justlearn" target="_blank">
+									<svg viewBox="0 0 24 24" class="w-8 h-8 astro-ZHCD62P5" astro-icon="tabler:brand-linkedin"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="icon-tabler"><rect width="16" height="16" x="4" y="4" rx="2"/><path d="M8 11v5M8 8v.01M12 16v-5M16 16v-3a2 2 0 0 0-4 0"/></g></svg>
+								</a>
+							</li>
+							<li class="astro-ZHCD62P5">
+								<a class="text-orange-400  rounded-lg text-sm p-2.5 inline-flex items-center astro-ZHCD62P5" aria-label="Phone" href="tel:+91 9643306888" target="_blank">
+									<svg viewBox="0 0 24 24" class="w-8 h-8 astro-ZHCD62P5" astro-icon="tabler:phone"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>
+								</a>
+							</li>
+						
+							
+						</ul>
+						
+					</div><p class="hidden astro-ZHCD62P5">
+						Made with love by <a class="text-blue-600 hover:underline font-bold dark:text-gray-200 astro-ZHCD62P5" href="https://edden.app/" target="_blank"><u class="astro-ZHCD62P5"> Edden</u></a>
+					</p>
+				
+
+				</div>
+			</div>
+		</div>
+	</footer>
+<script async src="https://tally.so/widgets/embed.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+</Layout>
+
+
