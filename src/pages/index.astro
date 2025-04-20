@@ -5,18 +5,10 @@ import Layout from '~/layouts/PageLayout.astro';
 
 import { Icon } from 'astro-icon';
 import Picture from '~/components/core/Picture.astro';
-
+import Steps from '~/components/widgets/Steps.astro'
 import ToggleTheme from '~/components/core/ToggleTheme.astro';
 import ToggleMenu from '~/components/core/ToggleMenu.astro';
-
-import { db } from "../../lib/firebase";
-import { query, collection, getDocs, where,} from "firebase/firestore";
-
-//FIREBASE ADD THE DOCUMENT ID HERE 
-const q = query(collection(db, "users"), where("id", "==", "sauravfialok"),);
-
-const querySnapshot = await getDocs(q);
-const datas = querySnapshot.docs.map((querySnapshot) => ({ ...querySnapshot.data(), id: querySnapshot.id }));
+import Content from '~/components/widgets/Content.astro';
 
 const meta = {
 	title: SITE.title,
@@ -35,19 +27,15 @@ const meta = {
 		<div class="py-3 px-3 mx-auto w-full md:flex md:justify-between max-w-6xl md:px-10">
 			<div class="flex justify-between">
 				<a class="flex items-center" href={getHomePermalink()}>
-					 <img src="https://firebasestorage.googleapis.com/v0/b/joinbuildspace.appspot.com/o/assets%2FScreenshot%202023-10-12%20at%2012.37.55%20AM.png?alt=media&token=40da532f-2871-4fd1-97b1-0aed5050b9b3&_gl=1*19kbjm2*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzA1MTExMi4xMDMuMS4xNjk3MDUxMjg5LjU2LjAuMA.." alt="Company Logo" width="190" height="50" class="rounded-md"> 
+					<img src="https://firebasestorage.googleapis.com/v0/b/website-storage-account.appspot.com/o/YCBH%2FWhatsApp_Image_2023-03-19_at_1.24.21_PM-removebg-preview.png?alt=media&token=938b2a6c-792e-4516-806f-64297833d255" alt="Company Logo" width="60" height="60" class="rounded-md">
 				
 
-				{datas.map((data: any) => 
-					<span class="self-center ml-2 text-2xl font-extrabold text-gray-900 whitespace-nowrap dark:text-white">
-					
-					</span>
-				)}
+				
 				
 				</a>
 				<div class="flex items-center md:hidden">
-					<!-- <ToggleTheme />
-					<ToggleMenu /> -->
+					<!-- <ToggleTheme /> -->
+					<ToggleMenu />
 				</div>
 			</div>
 			<nav
@@ -56,89 +44,33 @@ const meta = {
 			>
 				<ul class="flex flex-col pt-8 md:pt-0 md:flex-row md:self-center w-full md:w-auto text-xl md:text-base">
 					
-					<!-- <li class="md:hidden">
-						<a
-							class="font-medium hover:text-gray-900 dark:hover:text-white px-4 py-3 flex items-center transition duration-150 ease-in-out"
-							href="https://www.linkedin.com/"
-							target="_blank"
-							>Follow on Linkedin 
+		
+				<li>
+						<a class="font-medium hover:text-gray-900 dark:hover:text-white px-4 py-3 flex items-center transition duration-150 ease-in-out" href="#about" target="_blank">About us
 						</a>
-					</li> -->
-
-					<li>
-						{datas.map((data: any) => 
-						<a
-							class="font-medium hover:text-gray-900 dark:hover:text-white px-4 py-3 flex items-center transition duration-150 ease-in-out"
-							href= "#about"
-							target="_blank"
-							>About
-						</a>
-						)}
 					</li>
 
 					<li>
-						{datas.map((data: any) => 
-						<a
-							class="font-medium hover:text-gray-900 dark:hover:text-white px-4 py-3 flex items-center transition duration-150 ease-in-out"
-							href= "#work"
-							target="_blank"
-							>Works
+						<a class="font-medium hover:text-gray-900 dark:hover:text-white px-4 py-3 flex items-center transition duration-150 ease-in-out" href="/domains" target="_blank">Technical Domains
 						</a>
-						)}
 					</li>
-					
 					<li>
-						{datas.map((data: any) => 
-						<a
-							class="font-medium hover:text-gray-900 dark:hover:text-white px-4 py-3 flex items-center transition duration-150 ease-in-out"
-							href= "#awards"
-							target="_blank"
-							>Awards
+						<a class="font-medium hover:text-gray-900 dark:hover:text-white px-4 py-3 flex items-center transition duration-150 ease-in-out" href="/news" target="_blank">News & Media
 						</a>
-						)}
+					</li>
+					<li>
+
+	<li class="xl:hidden">
+						<a class="font-medium hover:text-gray-900 dark:hover:text-white px-4 py-3 flex items-center transition duration-150 ease-in-out" href="https://wa.me/919643306888?text=I%20checked%20out%20your%20website%20and%20I%27m%20interested" target="_blank">Contact us
+						</a>
 					</li>
 
 					<li>
-						{datas.map((data: any) => 
-						<a
-							class="font-medium hover:text-gray-900 dark:hover:text-white px-4 py-3 flex items-center transition duration-150 ease-in-out"
-							href= "#press"
-							target="_blank"
-							>Press
+						<a class="btn bg-primary-500 ml-4 font-medium text-white px-6 hover:bg-yellow-400 py-3 flex items-center transition duration-150 ease-in-out" href="http://learning.justlearnindia.in/" target="_blank">Login to Portal
 						</a>
-						)}
 					</li>
+				</ul>
 
-					<li>
-						{datas.map((data: any) => 
-						<a
-							class="font-medium hover:text-gray-900 dark:hover:text-white px-4 py-3 flex items-center transition duration-150 ease-in-out"
-							href= "#sessions"
-							target="_blank"
-							>Sessions
-						</a>
-						)}
-					</li>
-
-					<li>
-						{datas.map((data: any) => 
-						<a
-							class="font-medium hover:text-gray-900 dark:hover:text-white px-4 py-3 flex items-center transition duration-150 ease-in-out"
-							href= "#gallery"
-							target="_blank"
-							>Gallery
-						</a>
-						)}
-					</li>
-					<li>
-						{datas.map((data: any) => 
-						<a
-							class="font-medium hover:text-gray-900 dark:hover:text-white px-4 py-3 flex items-center transition duration-150 ease-in-out"
-							href= "mailto:abhishek@justrojgar.in"
-							target="_blank"
-							>{data.ctabutton}
-						</a>
-						)}
 					</li>
 				</ul>
 				<div class="md:self-center flex items-center mb-4 md:mb-0 ml-2">
@@ -159,122 +91,422 @@ const meta = {
 		</div>
 	</header>
 
+	<div class="scrollButtons">
+		<button id="scrollUpButton" class="scrollButton">&#x25B2;</button>
+		<button id="scrollDownButton" class="scrollButton">&#x25BC;</button>
+	  </div>
 
+<div class="owl-three owl-carousel img-carousel owl-theme">
+		<div class="item">
+			<div class="my-div">
+				<video autoplay muted loop playsinline class="my-div-video">
+					<source src="https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/banner%2Fgifs%2Fezgif-1-0713aa60f9.mp4?alt=media&token=259ef4af-54f8-4566-97e6-24b02383e4fb" type="video/mp4">
+				  </video>
+			</div>
+		</div>
+		<div class="item">
 
-
-
-	<section id="hero_section" class="bg-neutral-100">
-		<div  class="max-w-[75rem] px-4 sm:px-6 lg:px-8 pt-10 lg:pt-20 lg:pb-20 mx-auto">
-			<div class=" md:mt-8 grid sm:grid-cols-2 lg:grid-cols-2 gap-6 lg:items-center wrapper">
-				<div class="flex flex-col text-start rounded-xl order-2 sm:order-1">
-					<h1 class="text-4xl md:text-[2.80rem] font-bold leading-tighter tracking-tighter mb-4 font-heading">
+		<div class="my-div">
+			<video autoplay muted loop playsinline class="my-div-video">
+				<source src="https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/banner%2Fgifs%2Fezgif-1-d5e338458b.mp4?alt=media&token=f5a69fb9-4a8a-4f0b-b881-9040b809d02b" type="video/mp4">
+			  </video>
+		</div>
+		</div>
+		
+	    </div><div class="text-left pb-10 mt-6 md:mt-10  md:pb-16 max-w-6xl mx-4 md:mx-auto">
 						
-						{datas.map((data: any) => 
-							<span class="bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-yellow-400">	
-								Abhishek Chola
-							</span>
-						)}
-					</h1>
-					<h1 class="text-xl md:text-2xl font-semibold leading-tighter tracking-tighter mb-4">
-						Entrepreneur <br>
-Keynote Speaker <br>
-Angel Investor <br>
-						
-						
-					</h1>
-					<div class="max-w-none flex flex-nowrap flex-col sm:flex-row sm:justify-left ">
-						<div class="flex w-full sm:w-auto">
-							{datas.map((data: any) => 
-							<a
-								class="btn text-white border border-primary-600 bg-primary-500 hover:bg-yellow-500 hover:border-primary-500 sm:mb-0 w-full"
-								href= "mailto:abhishek@justrojgar.in"
-								target="_self"
-								rel="noopener"
-							>
-								<Icon name="tabler:rocket" class="w-5 h-5 mr-3 -ml-1.5" />{data.ctabutton}
-							</a>
-						)}
-						</div>
+			<div class="max-w-6xl mx-auto text-left">
+
+			<h2 class="text-3xl md:text-4xl font-bold leading-tighter text-center tracking-tighter mb-4 font-heading">
+		
+				<span class="bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-secondary-500 "> Unlock the potential of your organisation with 360° Ed-Tech and Skill-Tech Solutions.
+				</span>
+			</h2>
+			
+			
+			</div>
+
+
+
 	
+
+
+
+	<section id="about">
+		<div class="px-4 py-16 mx-auto max-w-6xl lg:px-8 lg:py-12">
+			<div class="max-w-xl md:mx-auto sm:text-center lg:max-w-4xl md:mb-5">
+				<p class="text-base text-amber-600 dark:text-amber-200 font-semibold tracking-wide uppercase"></p>
+				<h2 class="text-4xl md:text-5xl font-bold leading-tighter text-center tracking-tighter mb-4 font-heading">
+					About
+					<span class="bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-secondary-500 whitespace-nowrap">  Just Learn 
+					</span>
+				</h2>
+                <p class="text-xl text-gray-700 font-medium mb-12 mt-5 dark:text-white text-center">
+					Just Learn, a product of Just Rojgar Solutions Pvt. Ltd., is a National Award-Winning EdTech and SkillTech brand backed by Indian Institute of Management, Lucknow-EIC which offers innovative solutions for 21st-century education, learning content, platform technology with mobile app, VR- Virtual Reality / Metaverse trainings, AI / ML in education, skilling/upskilling/ reskilling, employment, hybrid trainings in labs and capacity-building through tech-enabled solutions.
+               </p>
+
+			   <h2 class="text-4xl md:text-5xl font-bold mt-16 leading-tighter text-center tracking-tighter mb-4 font-heading">
+				Our
+				<span class="bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-secondary-500 whitespace-nowrap">  Vision
+				</span>
+			</h2>
+			<p class="text-2xl md:text-xl text-gray-700 font-semibold italic mt-5 dark:text-white text-center">
+				"To connect 1 Billion people globally with 21st Century trainings & education."
+		   </p>
+			</div>
+		   
+		
+		</div>
+
+
+		<div class="px-4 py-8 md:py-8 sm:px-6 mx-auto md:px-24 lg:px-8 lg:py-0 lg:pb-10 max-w-7xl">
+			<h2 class="text-4xl md:text-5xl font-bold leading-tighter text-center mt-5 tracking-tighter mb-8 font-heading">
+				Our
+				
+				<span class="bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-secondary-500 whitespace-nowrap"> Reach
+				</span>
+	
+			</h2>
+			<div class="grid grid-cols-1 row-gap-8 md:grid-cols-4">
+				<div class="text-center md:border-r dark:md:border-slate-500 mb-10 md:mb-0">
+					<div class="text-5xl font-bold lg:text-5xl xl:text-6xl text-primary-500 font-heading">60+</div>
+					<p class="text-md font-medium tracking-widest text-gray-800 dark:text-slate-400 uppercase lg:text-base">
+						B2B Clients
+					</p>
+				</div>
+				<div class="text-center md:border-r dark:md:border-slate-500 mb-10 md:mb-0">
+					<div class="text-5xl font-bold lg:text-5xl xl:text-6xl text-primary-500 font-heading">1500+</div>
+					<p class="text-md font-medium tracking-widest text-gray-800 dark:text-slate-400 uppercase lg:text-base">
+						Courses
+					</p>
+				</div>
+				<div class="text-center md:border-r dark:md:border-slate-500 mb-10 md:mb-0">
+					<div class="text-5xl font-bold lg:text-5xl xl:text-6xl text-primary-500 font-heading">150+</div>
+					<p class="text-md font-medium tracking-widest text-gray-800 dark:text-slate-400 uppercase lg:text-base">
+						Domains
+					</p>
+				</div>
+	
+				<div class="text-center">
+					<div class="text-5xl font-bold lg:text-5xl xl:text-6xl text-primary-500 font-heading">1000+</div>
+					<p class="text-md font-medium tracking-widest text-gray-800 dark:text-slate-400 uppercase lg:text-base">Empanneled Trainers</p>
+				</div>
+	
+				
+	
+				</div>
+		</div>
+
+	</section>
+		
+
+
+
+
+
+	<!-- FEATURES  -->
+	<section id="features" class="scroll-mt-16">
+		<div class="px-4 py-16 mb-10 mx-auto max-w-6xl lg:px-8 lg:py-20 bg-primary-50 dark:bg-slate-800">
+			<div class="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
+				<p class="text-base text-primary-600 dark:text-primary-200 font-semibold tracking-wide uppercase"></p>
+				<h2 class="text-4xl md:text-5xl font-bold leading-tighter tracking-tighter mb-4 font-heading">
+					Our Offerings as Solution to 
+				
+					<span
+						class="bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-secondary-500 whitespace-nowrap">  Market Needs
+					</span>
 					
+				</h2>
+			</div>
+			<div class="grid mx-auto space-y-4 md:space-y-0 md:grid-cols-2">
+
+				<!-- FEATURE 1 -->
+				<div class="space-y-8 sm:px-8">
+					<div class="flex flex-row max-w-md">
+						<div class="mb-4 mr-4">
+							<div class="flex items-center justify-center w-12 h-12 rounded-full bg-primary-400">
+								<Icon name='tabler:book' class="w-5 h-5 text-white" />
+							</div>
+						</div>
+						<div>
+
+					<h3 class="mb-3 text-xl font-bold"> 1500+ relevant courses in 150+ domains with certifications </h3>
+						<p> Focusing on Industry 4.0 requirements </p>
+							<br>
+						</div>
 					</div>
-					
-					
+				</div>
+				
+				<!-- FEATURE 2 -->
+				<div class="space-y-8 sm:px-8">
+					<div class="flex flex-row max-w-md">
+						<div class="mb-4 mr-4">
+							<div class="flex items-center justify-center w-12 h-12 rounded-full bg-primary-400">
+								<Icon name='tabler:bulb' class="w-5 h-5 text-white" />
+							</div>
+						</div>
+						<div>
+
+						<h3 class="mb-3 text-xl font-bold"> Technical domains as well as Soft Skills, Language Training, Computer Literacy </h3>
+							<p> To help in overall development of proficiency of the workforce </p>
+							<br>
+							<br>
+						</div>
 					</div>
-					<div class="relative sm:mt-4 md:mx-6 max-w-4xl order-1 sm:order-2">
-					{datas.map((data: any) => 
-					
-						<img src= 'https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.22.34%20PM%20(1).jpeg?alt=media&token=c22b71b9-532b-4454-8ec5-f6a357b9b84e&_gl=1*13e7tda*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzA1MTExMi4xMDMuMS4xNjk3MDUyMzYxLjQ5LjAuMA..'  class="mx-auto rounded-md shadow-md shadow-primary-100 w-full"  style="object-fit: cover; height: 70vw; max-height: 500px;" alt="Hero Image">
-						)}
+				</div>
+			
+				
+		
+				<!-- FEATURE 3 -->
+				<div class="space-y-8 sm:px-8">
+					<div class="flex flex-row max-w-md">
+						<div class="mb-4 mr-4">
+							<div class="flex items-center justify-center w-12 h-12 rounded-full bg-primary-400">
+								<Icon name='tabler:school' class="w-5 h-5 text-white" />
+							</div>
+						</div>
+						<div>
+
+		<h3 class="mb-3 text-xl font-bold"> An integrated, 360 degree Learning Management Solution to connect all stakeholders </h3>
+							<p> Allows learning, skill gap assessments, tests / assignments and certification. Supported by Mobile App </p>
+							
+							<br>
+						</div>
 					</div>
+				</div>
+				
+					
+				<!-- FEATURE 4 -->
+				<div class="space-y-8 sm:px-8">
+					<div class="flex flex-row max-w-md">
+						<div class="mb-4 mr-4">
+							<div class="flex items-center justify-center w-12 h-12 rounded-full bg-primary-400">
+								<Icon name='tabler:stack' class="w-5 h-5 text-white" />
+							</div>
+						</div>
+						<div>
+
+						<h3 class="mb-3 text-xl font-bold"> Customising Skilling Solutions based on specific industry / organizational needs </h3>
+							<p> Just Learn also provides customised curriculum based on the requirement in industry or organisation </p>
+						</div>
+					</div>
+				</div>
+
+<div class="space-y-8 sm:px-8">
+					<div class="flex flex-row max-w-md">
+						<div class="mb-4 mr-4">
+							<div class="flex items-center justify-center w-12 h-12 rounded-full bg-primary-400">
+								<svg viewBox="0 0 24 24" class="w-5 h-5 text-white" astro-icon="tabler:cardboards"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="icon-tabler"><path d="M3 7v8.5A2.5 2.5 0 0 0 5.5 18h1.06a3 3 0 0 0 2.34-1.13l1.54-1.92a2 2 0 0 1 3.12 0l1.54 1.92A3 3 0 0 0 17.44 18h1.06a2.5 2.5 0 0 0 2.5-2.5V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2z"/><circle cx="8" cy="11" r="1"/><circle cx="16" cy="11" r="1"/></g></svg>
+							</div>
+						</div>
+						<div>
+
+							 <h3 class="mb-3 text-xl font-bold"> Virtual Reality Trainings and Metaverse </h3> 
+							<p> To provide trainings on critical topics with an immersive experience & interactions and developing walk-throughs in Metaverse environment</p> 
+							<br>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="space-y-8 sm:px-8">
+					<div class="flex flex-row max-w-md">
+						<div class="mb-4 mr-4">
+							<div class="flex items-center justify-center w-12 h-12 rounded-full bg-primary-400">
+								<svg viewBox="0 0 24 24" class="w-5 h-5 text-white" astro-icon="tabler:stack"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="icon-tabler"><path d="m12 6-8 4 8 4 8-4-8-4M4 14l8 4 8-4"/></g></svg>
+							</div>
+						</div>
+						<div>
+
+							<h3 class="mb-3 text-xl font-bold"> VR Learning for young learners </h3> 
+							<p>Promoting STEM Education & Art-Integration in education to explain concepts better and improve retention</p> 
+							<br>
+						</div>
+					</div>
+				</div>
+			
+			
 			</div>
 		</div>
 	</section>
+				
+	
+<section id="services" class="relative ">
+	<div class="max-w-[80rem] px-4 sm:px-6 lg:px-8 lg:py-12 lg:pb-16 mx-auto">
+	  <!-- Title -->
+	  <div class="max-w-4xl mx-auto text-center mb-10 lg:mb-14">
+		<h2 class="text-4xl font-bold md:text-5xl md:leading-tight tracking-tight dark:text-white">Our Programmes<span class="bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-yellow-400 ">
+		</span>
+		</h2>
+	  </div>
+	  <!-- End Title -->
+	
+	  <!-- Grid -->
+	  <div class="hidden md:block">
+	  <div class="mt-12 mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:items-center ">
+		<!-- Card -->
+		<div class="flex flex-col border-2 text-center rounded-xl p-5 border-primary-500 hover:border-yellow-300 hover:shadow-2xl my-special-box">
+			
 
-<section id="about">
-	<div  class="max-w-[70rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 lg:pb-24 mx-auto">
-			<div class="mt-5 md:mt-8 grid sm:grid-cols-2 lg:grid-cols-2 gap-6 lg:items-center wrapper">
-				<div class="relative  md:mx-6 max-w-full">
+				
+			
+				<div class="owl-three owl-carousel">
 					
-						
-					
-					<img src= "https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.54.55%20PM%20(2).jpeg?alt=media&token=deee2fce-a83e-40b2-b40c-d37fed546ab8&_gl=1*nztqia*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzA1MTExMi4xMDMuMS4xNjk3MDUyOTk2LjExLjAuMA.."  class="mx-auto rounded-md"  style="object-fit: contain;" alt="Hero Image">
-					
+				<div class="item"><img src="https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/image%20groups%2F3%2F85341762530.png?alt=media&token=08acfb51-c2ba-4b52-8392-d0edfc8aed6b" class="rounded-md w-full" style="object-fit: cover; height: 200px;"></div>
+			<div class="item"><img src="https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/image%20groups%2F3%2Fimage%20201.png?alt=media&token=c3ad02e9-e403-443d-a51f-e7909f42cf96" class="rounded-md w-full" style="object-fit: cover; height: 200px;"></div>
+			<div class="item"><img src="https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/image%20groups%2F3%2FScreenshot%202023-05-17%20at%2012.55.31%20AM.png?alt=media&token=6bd97cd6-f34d-4230-8913-2b3beb1ad25e" class="rounded-md w-full" style="object-fit: cover; height: 200px;"></div>
+			<div class="item">	<img src="https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/image%20groups%2F3%2FScreenshot%202023-05-17%20at%2012.55.38%20AM.png?alt=media&token=265e68b5-cb3b-4b6f-be18-f3a399ee279f" class="rounded-md w-full" style="object-fit: cover; height: 200px;"></div>
+		
+			</div>
+
+			
+			<span class="font-bold text-2xl mt-5 text-gray-800 dark:text-gray-200">
+				Technical Trainings
+			</span>
+		
+			<p class="mt-2 text-sm text-gray-500">To enhance skills</p>
+			<a class=" btn bg-primary-500 border-primary-500 text-white text-mn font-semibold hover:bg-secondary-400 border-2 shadow-md mt-5" href="http://learning.justlearnindia.in/" target="_blank">Know More
+			</a>
+		</div>
+	
+		<!-- End Card -->
+	
+		<!-- Card -->
+		<div class="flex flex-col border-2 text-center  rounded-xl p-5 border-primary-500 hover:border-yellow-300 hover:shadow-2xl my-special-box">
+			
 
 		
-					
-					</div>
-					<div class="relative sm:mt-4 md:mx-6 max-w-4xl">
-					<p class="text-base text-primary-600 dark:text-primary-200 font-semibold tracking-wide uppercase"></p>
-					<h1 class="text-4xl md:text-3xl font-bold mb-4 ">
-						About Me
-							
-					
-					</h1>
-				
-					
-						<p class="text-md md:text-md mt-3 font-medium text-gray-700 mb-8 dark:text-white">
-							Abhishek's expertise in aligning deep tech in education with the demands of the 21st century, particularly in the context of Industry 4.0 and 5.0, showcases his forward-thinking approach. By integrating emerging technologies such as Augmented Reality (AR), Virtual Reality (VR), metaverse concepts, and artificial intelligence (AI) and machine learning (ML) into educational frameworks, he has demonstrated a unique perspective on solving the challenges that arise in this evolving field. <br> <br> Abhishek has played a vital role in creating job opportunities in the interiors of India and has provided employment to 1 million people. Focusing on job creation in rural and less-developed areas can be particularly impactful, as it can help reduce urban-rural disparities and improve the livelihoods of individuals who may have limited access to employment opportunities.
-						</p>
-					
-					
-					
-	
-					
-					</div>
-					
-					
-					</div>
+
+		<div class="owl-three img-carousel owl-carousel owl-theme ">
+			<div class="item"><img src="https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/image%20groups%2F4%2F27149839985%20(1).png?alt=media&token=418e2a95-e9b4-4230-88fe-5630d4d959bf" class="rounded-md " style="object-fit: cover; height: 200px;"></div>
+			<div class="item"><img src="https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/image%20groups%2F4%2Fimage%20206.png?alt=media&token=26d7200a-76a7-430d-9272-7e0f9266e9ef" class="rounded-md" style="object-fit: cover; height: 200px;"></div>
+			<div class="item">	<img src="https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/image%20groups%2F4%2Fimage%20207.png?alt=media&token=5fa5c57e-3ee1-44b3-b17b-77f09123965e" class="rounded-md" style="object-fit: cover; height: 200px;"></div>
+			
 			</div>
-		</section>
+			
+		
 
+			
+			
+		
+				<span class=" font-bold text-2xl mt-7 text-gray-800 dark:text-gray-200">
+					Developmental Projects and Trainings
+				</span>
+			  <p class="mt-2 text-sm text-gray-500">To develop Soft Skills and Life Skills</p>
+			  
+		</div>
+		<!-- End Card -->
+	
+		<div class="flex flex-col border-2  text-center rounded-xl p-5 border-primary-500 hover:border-yellow-300 hover:shadow-2xl my-special-box">
+		
+			
+		
+		<div class="owl-three owl-carousel owl-theme">
+				
+			<div class="item"><img src="https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/image%20groups%2F2%2Fimage%20198.png?alt=media&token=952a44f3-0add-4905-8330-2176c601bb51" class="rounded-md" style="object-fit: cover; height: 200px;"></div>
+				<div class="item"><img src="https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/image%20groups%2F2%2Fimage%20199.png?alt=media&token=c57e9537-046e-451e-8a6f-328e35780c48" class="rounded-md" style="object-fit: cover; height: 200px;"></div>
+				<div class="item"><img src="https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/vr%20for%20young%2FChem%20lab%201.jpg?alt=media&token=6eb72db1-0ed6-43f0-9fe6-222ed187e5ab" class="rounded-md" style="object-fit: cover; height: 200px;"></div>
+				<div class="item"><img src="https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/vr%20for%20young%2FChem%20lab%202.png?alt=media&token=abda9d69-d8e8-465b-86b8-2ad93028398e" class="rounded-md" style="object-fit: cover; height: 200px;"></div>
+				<div class="item"><img src="https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/vr%20for%20young%2FHuman%20anatomy.jpg?alt=media&token=0e01fb6a-20bd-4238-87a2-79d65af7e7ef" class="rounded-md" style="object-fit: cover; height: 200px;"></div>
+				<div class="item"><img src="https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/vr%20for%20young%2FSpace%20Travel.png?alt=media&token=145217a5-4973-4213-968c-179b4933ab6e" class="rounded-md" style="object-fit: cover; height: 200px;"></div>
+		
+			</div>
+		
+	<span class=" font-bold text-2xl mt-7 text-gray-800 dark:text-gray-200">
+		VR Learning for Young Learners
+	</span>
+  <p class="mt-1 text-sm text-gray-500">Learn in an immersive & interactive lifelike environment</p>
+ 
+</div>
+
+		<!-- Card -->
+		<div class="flex flex-col border-2  text-center rounded-xl p-5 border-primary-500 hover:border-yellow-300 hover:shadow-2xl my-special-box">
+			
+				
+				<div class="owl-three img-carousel owl-carousel owl-theme ">
+				<div class="item"><img src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-4.0.3&#38;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&#38;auto=format&#38;fit=crop&#38;w=1771&#38;q=80" class="rounded-md" style="object-fit: cover; height: 200px;"></div>
+			
+			<div class="item"><img src="https://firebasestorage.googleapis.com/v0/b/website-storage-account.appspot.com/o/Just%20Learn%20Farming%2FScreenshot%202023-03-25%20at%2012.41.02%20AM.png?alt=media&token=6be6b42c-713b-461f-be45-3910d91fc0a1" class="rounded-md" style="object-fit: cover; height: 200px;"></div>
+			<div class="item"><img src="https://firebasestorage.googleapis.com/v0/b/website-storage-account.appspot.com/o/Just%20Learn%20Farming%2FWhatsApp%20Image%202023-03-22%20at%201.36.40%20PM.jpeg?alt=media&token=d98f636e-19dc-4e44-9516-a5356a175e37" class="rounded-md " style="object-fit: cover; height: 200px;"></div>
+			<div class="item"><img src="https://firebasestorage.googleapis.com/v0/b/website-storage-account.appspot.com/o/Just%20Learn%20Farming%2FWhatsApp%20Image%202023-03-22%20at%201.36.41%20PM.jpeg?alt=media&token=47f48a54-bcae-48f6-9f0b-83defb52610c" class="rounded-md" style="object-fit: cover; height: 200px;"></div>
+			
+			</div>
+		
+			<span class=" font-bold text-xl mt-5 text-gray-800 dark:text-gray-200">
+				Organic Farming Training & Millets Trainings
+			</span>
+		  <p class="mt-1 text-sm text-gray-500">Learn how to grow and market organic produce</p>
+		  <a class=" btn bg-primary-500 border-primary-500 text-white text-mn font-semibold hover:bg-secondary-400 border-2 shadow-md mt-5" href="https://organicfarmingtraining.justlearnindia.in/" target="_blank">Know More
+			</a>
+		</div>
+
+		<div class="flex flex-col border-2  text-center rounded-xl p-5 border-primary-500 hover:border-yellow-300 hover:shadow-2xl my-special-box">
+		
+			
+				
+				<div class="owl-three owl-carousel owl-theme">
+					<div class="item"><img src="https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/image%20groups%2F2%2F63042499043.png?alt=media&token=b506dad7-e458-4803-abb0-37f9e7879157" class="rounded-md" style="object-fit: cover; height: 200px;"></div>
+				<div class="item"><img src="https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/image%20groups%2F2%2Fimage%20197.png?alt=media&token=0a488938-841c-4543-81e7-3e54a84691b3" class="rounded-md" style="object-fit: cover; height: 200px;"></div>
+				<div class="item"><img src="https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/vr%20for%20young%2FVR%20modules%202-min.png?alt=media&token=b0d6e737-927c-4d49-965c-334b1f56668c" class="rounded-md" style="object-fit: cover; height: 200px;"></div>
+				<div class="item"><img src="https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/vr%20for%20young%2Fmulti%20boom%20jumbo-min.png?alt=media&token=986ff384-3f7d-4a82-85f4-35ef2d6f896d" class="rounded-md" style="object-fit: cover; height: 200px;"></div>
+				<div class="item"><img src="https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/vr%20for%20young%2FDumper%20Tipper%20Truck%20operations-min.png?alt=media&token=216d717f-d82e-4f1e-b14d-0ab612ab1392" class="rounded-md" style="object-fit: cover; height: 200px;"></div>
+				
+		
+			</div>
+				
+		
+			
+			
+			<span class=" font-bold text-2xl mt-7 text-gray-800 dark:text-gray-200 ">
+				Virtual Reality and Metaverse Trainings
+			</span>
+		  <p class="mt-1 text-sm text-gray-500">Learn in an immersive & interactive lifelike environment</p>
+		 
+		</div>
+
+
+
+		
+		<div class="flex flex-col border-2 text-center rounded-xl p-5 border-primary-500 hover:border-yellow-300 hover:shadow-2xl my-special-box">
+ 
+			
+
+<div class="owl-three owl-carousel  owl-theme">
+				<div class="item">	<img src="https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/image%20groups%2F3%2FScreenshot%202023-05-17%20at%2012.59.36%20AM.png?alt=media&token=8e70e285-a89c-4e7d-b009-4d7ef0e9e09f" class="rounded-md" style="object-fit: cover; height: 200px;"></div>
+				<div class="item"><img src="https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/image%20groups%2F1%2Fimage%20195.png?alt=media&token=ef49500f-cf31-4d25-933a-88840d1d9e9e" class="rounded-md" style="object-fit: cover; height: 200px;"></div>
+				<div class="item"><img src="https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/image%20groups%2F1%2FGroup%2092.png?alt=media&token=9ed9060a-69a3-4415-b01f-2026286baccb" class="rounded-md" style="object-fit: cover; height: 200px;"></div>
+				
+		
+			
+			
+			</div>
+			
+	
+		
+			<span class=" font-bold text-2xl mt-7 text-gray-800 dark:text-gray-200">
+				Learning Management System
+			</span>
+		  <p class="mt-1 text-sm text-gray-500"> 360 Degree Learning Management System</p>
+		 
+		</div>
+
+		
+
+	  <!-- End Grid -->
+	</div>
+</div>
+	</div>
+	
 	
 
-		<section id="what">
-		<div class="px-4 py-16 mx-auto max-w-6xl lg:py-5">
-			<div class="max-w-xl sm:mx-auto lg:max-w-4xl">
-				<div class="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-5xl md:mb-12">
-
-					<h2 class="max-w-lg mb-4 text-3xl mt-2 font-bold leading-none tracking-tight sm:text-4xl md:mx-auto font-heading">
-						Accomplishments
-					</h2>
-					<span class=" font-normal text-xl mt-2 text-center max-w-6xl text-gray-800 dark:text-gray-200">
-						Abhishek's extensive experience as a keynote speaker at various national and international platforms including All India Radio, various TV channels covering a wide range of topics, including the startup ecosystem, Industry 4.0 and 5.0, future workforce, employment, industry optimization & growth, robotics, AI trainer bots, artificial intelligence, virtual reality, mental health, and the future of farming, demonstrates his versatility and expertise. Speaking on such diverse subjects indicates a well-rounded understanding of current and future trends across different domains. 
-						<br><br>
-						Being recognized ''Just Learn'' as one of the top under 75 impactful startups in India out of 100,000 startups by the Ministry of Science & Technology, Government of India, is also a remarkable achievement for Abhishek and his startup, Just Learn. It underscores the significant impact and success of his leadership and the contributions of his startup in the entrepreneurial ecosystem of India.
-
-			</span>
-				</div>
-				</div>
-			</section>
 
 
-	<section id='awards' class="relative">
-		<div  class="max-w-[75rem] px-4 sm:px-6 lg:px-8 mt-10 mx-auto">
+
+<section class="relative mt-5">
+		<div class="max-w-[75rem] px-4 sm:px-6 lg:px-8 mt-20 mx-auto">
 		
 		  <div class="max-w-3xl mx-auto text-center mb-5 lg:mb-5">
-			<h2 class="text-3xl font-bold md:text-4xl md:leading-tight dark:text-white">Awards and Recognitions<span
-				class="bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-secondary-500 ">
+			<h2 class="text-3xl font-bold md:text-4xl md:leading-tight dark:text-white">Awards and Recognitions<span class="bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-secondary-500 ">
 			</span>
 			</h2>
 			
@@ -285,17 +517,36 @@ Angel Investor <br>
 	 <div class="owl-one owl-carousel owl-theme my-10 max-w-6xl mx-auto">
 		<div class="item">
 			<div class="flex flex-col text-center items-center rounded-xl p-5 border-2 border-primary-500 max-w-xl">
-				<img src="https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/awards%2Fimage%20182.png?alt=media&token=c59519ea-a906-43ef-aa0a-c582b3657d9f" >
+				<img src="https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/awards%2Fimage%20182.png?alt=media&token=c59519ea-a906-43ef-aa0a-c582b3657d9f">
 				
 			  <p class="mt-3 text-sm font-medium text-justify text-gray-600"> CSR Award 2020 by Dr. Alok Mishra, Joint Secretary, AIU, GOI. for enabling & providing online and hybrid education for CSRs and corporates initiatives</p> 
 			</div>
 		
 		</div>
+		<div class="item">
+			<div class="flex flex-col text-center items-center rounded-xl p-5 border-2 border-primary-500">
+				<img src="https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/awards%2Fimage%20183.png?alt=media&token=a74c5a41-e599-4c9a-abf0-50ccb78218a4"> 
+					
+		
+				  <p class="mt-3 text-sm font-medium text-justify text-gray-600"> Under 40 Top Entrepreneur Award 2022 by Business Mint
+				</p>
+			</div>
+		
+		</div>
+		<div class="item">
+			<div class="flex flex-col text-center items-center rounded-xl p-5 border-2 border-primary-500">
+				<img src="https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/awards%2Fimage%20184.png?alt=media&token=d1b6c64d-c0f6-47af-ac1d-92ddee947647">
+				
+	
+			  <p class="mt-3 text-sm font-medium text-justify text-gray-600">Just Learn receiving the Women Entrepreneur Award by Ambience Group on Women's Day for educating children and youth - Contribution to the lives of communities and making an impact, especially during pandemic.
 
+			</p>
+		</div>
+		</div>
 
 		<div class="item">
 			<div class="flex flex-col text-center items-center rounded-xl p-5 border-2 border-primary-500">
-				<img src="https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/awards%2Fimage%20185.png?alt=media&token=220a85a5-5212-4d97-bfbc-fba70da8b3b9"  >
+				<img src="https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/awards%2Fimage%20185.png?alt=media&token=220a85a5-5212-4d97-bfbc-fba70da8b3b9">
 				
 	
 	
@@ -309,7 +560,7 @@ Angel Investor <br>
 			<div class="flex flex-col text-center items-center rounded-xl p-5 border-2 border-primary-500">
 				
 				
-					<img src="https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/awards%2FGroup%2091-min.png?alt=media&token=bcdd6a9d-e44a-4bd2-bbc4-a080a63e3540"  > 
+					<img src="https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/awards%2FGroup%2091-min.png?alt=media&token=bcdd6a9d-e44a-4bd2-bbc4-a080a63e3540"> 
 			
 			  <p class="mt-3 text-sm font-medium text-justify text-gray-600">
 				Just Learn was selected among the Top 75 Impactful Indian organizations by Department of Science and Technology (DST), Government of India as a part of  ‘Azadi ka Amrit Mahotsavtov -75 years of Independence’ celebration.
@@ -320,7 +571,7 @@ Angel Investor <br>
 		<div class="item">
 			<div class="flex flex-col text-center items-center rounded-xl p-5 border-2 border-primary-500">
 				
-					<img src="https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/awards%2Fimage%20186.png?alt=media&token=567069ca-2be4-4423-b7bf-d06d67e26034"  >
+					<img src="https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/awards%2Fimage%20186.png?alt=media&token=567069ca-2be4-4423-b7bf-d06d67e26034">
 		
 	
 			  <p class="mt-3 text-sm font-medium text-justify text-gray-600">
@@ -332,557 +583,386 @@ Angel Investor <br>
 		
 	</div>
 	</section>
-
-
-	<div id="press" class="max-w-4xl mb-10 mt-10 mx-5 md:mx-auto sm:text-center lg:max-w-7xl md:mb-12">
-		
-		<div class="max-w-3xl mx-auto mt-5 text-center">
-				<h2 class="text-3xl font-bold md:text-4xl md:leading-tight dark:text-white">Press and Media
-				</h2>
-			  </div>
 	
-			<div class="owl-one img-carousel owl-carousel owl-theme my-10 max-w-6xl mx-auto">
-				<div class="item">
+
+
+
+
+<div class="max-w-4xl mb-10 mt-10 mx-5 md:mx-auto sm:text-center lg:max-w-7xl md:mb-12">
 		
-		<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/news%2FWhatsApp%20Image%202023-05-12%20at%204.46.13%20PM.jpeg?alt=media&token=cb7b5591-33c9-43ea-ba24-aa32429d7c4d'class="w-full rounded-md"> <div class='mx-auto w-56 my-10'>
-					
-			
-			
-								</div>
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/news%2FWhatsApp%20Image%202023-05-12%20at%204.46.28%20PM.jpeg?alt=media&token=8ae237f0-3fd1-44aa-9b01-9a9ad6770b05'class="w-full rounded-md">
+		<h2 class="text-4xl md:text-5xl font-bold mx-10 md:mx-auto leading-tighter tracking-tighter mb-4 font-heading">
+			Photo Gallery
+		</h2>
 
-		<div class='mx-auto w-56 my-3'>
-					<a
-										class="btn bg-primary-500 ml-4 font-medium text-white px-6 hover:bg-yellow-400 py-3 flex items-center transition duration-150 ease-in-out"
-										href= "https://kdipa.gov.kw/kdipa-receives-an-economic-delegation-from-the-republic-of-india/"
-										target="_blank"
-										>Read the Full Article 
-									</a>
-			
-			
-								</div>
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/news%2Fimage%20217.png?alt=media&token=0a9af722-8f04-4654-8730-71ec47ebef4f'class="w-full rounded-md">
-
-		<div class='mx-auto w-56 my-3'>
-					<a
-										class="btn bg-primary-500 ml-4 font-medium text-white px-6 hover:bg-yellow-400 py-3 flex items-center transition duration-150 ease-in-out"
-										href= "https://m.economictimes.com/tech/technology/iim-lucknow-eic-picks-up-small-stake-in-just-rojgar-at-rs-80-crore-valuation/amp_articleshow/93819970.cms#appDwnldBanner"
-										target="_blank"
-										>Read the Full Article 
-									</a>
-			
-			
-								</div>
-	</div>
-		<div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/news%2Fimage%20218.png?alt=media&token=7d800089-74a3-4b38-918d-15e584465516'class="w-full rounded-md">
-
-		<div class='mx-auto w-56 my-3'>
-					<a
-										class="btn bg-primary-500 ml-4 font-medium text-white px-6 hover:bg-yellow-400 py-3 flex items-center transition duration-150 ease-in-out"
-										href= "https://timesofindia.indiatimes.com/iim-lucknow-eic-picks-up-small-stake-in-just-rojgar-at-rs-80-cr-valuation/articleshow/93819429.cms"
-										target="_blank"
-										>Read the Full Article 
-									</a>
-			
-			
-								</div>
-	</div>
-	<div class="item">
-		<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/new%20funding%2FWhatsApp%20Image%202023-07-20%20at%2010.20.32%20AM.jpeg?alt=media&token=5985406c-cd55-4ee1-84e7-647de71a1c0e'class="w-full rounded-md">
-
-		<div class='mx-auto w-56 my-3'>
-					<a
-										class="btn bg-primary-500 ml-4 font-medium text-white px-6 hover:bg-yellow-400 py-3 flex items-center transition duration-150 ease-in-out"
-										href= "https://www.linkedin.com/posts/department-for-promotion-of-industry-and-internal-trade_just-learn-raised-inr-163-crores-usd-198330-activity-7087027557128187905-EClZ?utm_source=share&utm_medium=member_ios"
-										target="_blank"
-										>Read the Full Article 
-									</a>
-			
-			
-								</div>
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/new%20funding%2FWhatsApp%20Image%202023-07-20%20at%2010.20.33%20AM%20(1).jpeg?alt=media&token=5a8135e0-8604-4fda-bb78-e5ba58b5e5a3'class="w-full rounded-md">
-		<div class='mx-auto w-56 my-3'>
-					<a
-										class="btn bg-primary-500 ml-4 font-medium text-white px-6 hover:bg-yellow-400 py-3 flex items-center transition duration-150 ease-in-out"
-										href= "https://www.linkedin.com/posts/invest-india_just-learn-raised-inr-163-crores-usd-198330-activity-7087074143354986496-Fp9D?utm_source=share&utm_medium=member_ios"
-										target="_blank"
-										>Read the Full Article 
-									</a>
-			
-			
-								</div>
-	</div>
-	<div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/new%20funding%2FWhatsApp%20Image%202023-07-20%20at%2010.20.33%20AM%20(2).jpeg?alt=media&token=7322382b-51ce-4e0f-954a-3b9a312cc70d'class="w-full rounded-md">
-
-		<div class='mx-auto w-56 my-3'>
-					<a
-										class="btn bg-primary-500 ml-4 font-medium text-white px-6 hover:bg-yellow-400 py-3 flex items-center transition duration-150 ease-in-out"
-										href= "https://www.linkedin.com/posts/startupinup_just-learn-raised-inr-163-crores-usd-198330-activity-7086679751511162880-ufzc?utm_source=share&utm_medium=member_ios"
-										target="_blank"
-										>Read the Full Article 
-									</a>
-			
-			
-								</div>
-	</div>
-
-	<div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/new%20funding%2FWhatsApp%20Image%202023-07-20%20at%2010.20.33%20AM.jpeg?alt=media&token=8dc3cdf6-54fa-442e-bb97-412973956f50'class="w-full rounded-md">
-		<div class='mx-auto w-56 my-3'>
-					<a
-										class="btn bg-primary-500 ml-4 font-medium text-white px-6 hover:bg-yellow-400 py-3 flex items-center transition duration-150 ease-in-out"
-										href= "https://www.linkedin.com/posts/cell-for-ipr-promotion-management-cipam_just-learn-raised-inr-163-crores-usd-198330-activity-7087026974707097601-N3q0?utm_source=share&utm_medium=member_ios"
-										target="_blank"
-										>Read the Full Article 
-									</a>
-			
-			
-								</div>
-	</div>
-
-	<div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/new%20funding%2FWhatsApp%20Image%202023-07-20%20at%2010.21.25%20AM.jpeg?alt=media&token=b58c6858-cb64-4c4e-99c5-25236dcb8698'class="w-full rounded-md">
-
-		<div class='mx-auto w-56 my-3'>
-					<a
-										class="btn bg-primary-500 ml-4 font-medium text-white px-6 hover:bg-yellow-400 py-3 flex items-center transition duration-150 ease-in-out"
-										href= "https://www.linkedin.com/posts/invest-india_inthenews-investinindia-investindia-activity-7087651062102319104-vBAU?utm_source=share&utm_medium=member_ios"
-										target="_blank"
-										>Read the Full Article 
-									</a>
-			
-			
-								</div>
-	</div>
-
-
-	<div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/new%20funding%2FScreenshot%202023-07-20%20at%203.00.29%20PM.png?alt=media&token=93d03ee4-7d33-45dc-8600-61e2e467b1da'class="w-full rounded-md">
-
-		<div class='mx-auto w-56 my-3'>
-					<a
-										class="btn bg-primary-500 ml-4 font-medium text-white px-6 hover:bg-yellow-400 py-3 flex items-center transition duration-150 ease-in-out"
-										href= "https://www.ptinews.com/pti/Just-Learn--raised-INR-1-63-Crores---USD-198330-as-FDI--Foreign-Direct-Investment--in-Pre-Series-A-Funding-at-a-Valuation-of-INR-100-08-Crores---USD-12-2-Million/63553.html"
-										target="_blank"
-										>Read the Full Article 
-									</a>
-			
-			
-								</div>
-	</div>
-
-
-	<div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/new%20funding%2FScreenshot%202023-07-20%20at%203.00.52%20PM.png?alt=media&token=2231555e-ff74-4404-aae6-738551bf04e9'class="w-full rounded-md">
-		<div class='mx-auto w-56 my-3'>
-					<a
-										class="btn bg-primary-500 ml-4 font-medium text-white px-6 hover:bg-yellow-400 py-3 flex items-center transition duration-150 ease-in-out"
-										href= "https://www.theweek.in/wire-updates/business/2023/07/17/dcm26-just-learn.amp.html"
-										target="_blank"
-										>Read the Full Article 
-									</a>
-			
-			
-								</div>
-	</div>
-
-	<div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/new%20funding%2FScreenshot%202023-07-24%20at%2011.22.41%20AM.png?alt=media&token=908bedf5-007e-4cdb-9b5b-318a2c7973f0'class="w-full rounded-md">
-		<div class='mx-auto w-56 my-10'>
-					<a
-										class="btn bg-primary-500 ml-4 font-medium text-white px-6 hover:bg-yellow-400 py-3 flex items-center transition duration-150 ease-in-out"
-										href= "https://twitter.com/investindia/status/1681884822946586624?s=48"
-										target="_blank"
-										>Read the Full Article 
-									</a>
-			
-			
-								</div>
-	</div>
-
-
+		<div class="owl-one img-carousel owl-carousel owl-theme my-10 max-w-6xl mx-auto">
+			<div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.51.34%20PM%20(6).jpeg?alt=media&token=4301a35b-bbfc-4b51-9e99-42bfaf57ba4c'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.22.33%20PM.jpeg?alt=media&token=a044e680-39fc-42e6-b7f1-c2bf5d8c1e15'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.22.33%20PM%20(1).jpeg?alt=media&token=a749cea3-efef-402b-923b-c371c819dde7'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.22.34%20PM%20(1).jpeg?alt=media&token=c22b71b9-532b-4454-8ec5-f6a357b9b84e'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.22.34%20PM.jpeg?alt=media&token=517d812e-119b-46be-acc3-5c1bd670e12a'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.22.35%20PM%20(1).jpeg?alt=media&token=0be68b81-9824-4109-970f-421c60cf54ff'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.22.35%20PM.jpeg?alt=media&token=b753c05a-81aa-49e9-a206-ffeca7ec5c25'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.22.36%20PM%20(1).jpeg?alt=media&token=25057f41-4394-462f-954b-1e5c62f89a09'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.22.36%20PM.jpeg?alt=media&token=f9c17d83-c50d-4d3a-a124-dc64d6fe1240'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.22.37%20PM%20(1).jpeg?alt=media&token=5cb5b38a-779a-404a-8a55-581438b1e6ac'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.22.37%20PM.jpeg?alt=media&token=5431a751-bfe6-402a-80d9-d5763fcdcb16'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.22.38%20PM%20(1).jpeg?alt=media&token=a9669cd9-73af-47e6-bf2c-a3ea695a95e7'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.22.38%20PM.jpeg?alt=media&token=d78e5455-3132-4d19-b257-2f4cbf4bf060'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.22.40%20PM.jpeg?alt=media&token=75e88820-818b-48d8-b71d-8eb97ca9f9ae'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/website-storage-account.appspot.com/o/Just%20Learn%20Farming%2Fnew%20set%2FScreenshot%202023-04-09%20at%207.41.46%20PM.png?alt=media&token=2b514708-2167-47c2-8d09-9cc5e2a344e4'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.22.41%20PM%20(1).jpeg?alt=media&token=0a000c1d-9332-4994-80c4-c51fb876b386'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.22.42%20PM.jpeg?alt=media&token=1cb5d654-9880-494a-94e2-ce4ab3f83743'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.22.36%20PM.jpeg?alt=media&token=f9c17d83-c50d-4d3a-a124-dc64d6fe1240'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.22.44%20PM%20(1).jpeg?alt=media&token=ffd956ca-a095-4fb9-9835-718c2289ac8c'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.22.52%20PM.jpeg?alt=media&token=39c4bc7c-da89-44a2-ae31-1953bdd21325'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.22.53%20PM.jpeg?alt=media&token=c641af85-f1ee-4889-a291-6d883a5c8670'class="w-full rounded-md">
 </div>
-	</div>
+<div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.22.56%20PM.jpeg?alt=media&token=cfe94c2c-6d3f-4b91-ab79-3f4fc3b3ee29'class="w-full rounded-md">
+</div>
+
+<div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.23.01%20PM%20(1).jpeg?alt=media&token=42f13de8-a6aa-4caa-b32f-78377fb491af'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.23.01%20PM.jpeg?alt=media&token=063fabe8-41fa-41f4-990c-ebc8fe492f36'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.23.03%20PM.jpeg?alt=media&token=8071a86a-fb4f-403a-bbc6-d239e66d9c3b'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.23.04%20PM.jpeg?alt=media&token=65929639-f7f3-4112-9a3b-477a9ae75c00'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.23.07%20PM.jpeg?alt=media&token=878f21c9-861f-487c-bfee-03ac8859f79d'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.22.54%20PM.jpeg?alt=media&token=5a63af07-101f-456f-b129-f2c3a08e69d7'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.23.09%20PM.jpeg?alt=media&token=8a233cec-fc2f-4fd6-aae2-827a0b0be57e'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.22.54%20PM.jpeg?alt=media&token=5a63af07-101f-456f-b129-f2c3a08e69d7'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.49.42%20PM%20(1).jpeg?alt=media&token=424bc8a7-2f6b-4c81-af55-4ccabaccaa89'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.49.42%20PM.jpeg?alt=media&token=355d3b0f-59c5-4047-a090-75f0479f94c9'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.51.33%20PM.jpeg?alt=media&token=b72c71cf-4673-4833-b4b0-87853c84cf61'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.51.34%20PM%20(1).jpeg?alt=media&token=43a9194c-f860-43db-9795-5a55d10d79c8'class="w-full rounded-md">
+</div><div class="item">
+	
+	<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.51.34%20PM%20(4).jpeg?alt=media&token=58853878-f497-4de3-9cf7-2a6dccfce60a'class="w-full rounded-md">
+</div>
 
 
-	<section id="sessions" class="relative">
-        <div  class="max-w-[80rem] px-4 sm:px-6 lg:px-8 lg:py-4 lg:pb-16 mx-auto">
-          <!-- Title -->
-          <div class="max-w-3xl mx-auto text-center mb-5 mt-10 lg:mb-5">
-            <h2 class="text-4xl font-bold md:text-4xl md:leading-tight dark:text-white"> 
-            Sessions
-           
-            </h2>
-          </div>
-          <!-- End Title -->
-          
-          <!-- Grid -->
-          <div class="mt-5 grid sm:grid-cols-2 lg:grid-cols-2 gap-3 lg:items-center">
 
-			       
-			<div class="flex flex-col text-center items-center rounded-xl p-5">
-				<iframe width="100%" height="315px" src="https://www.youtube.com/embed/_kPmx6sK3YQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-				
-            </div>
 
-            
-			<div class="flex flex-col text-center items-center rounded-xl p-5">
-				<iframe width="100%" height="315px" src="https://www.youtube.com/embed/U74fnnZuC8M" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-				
-            </div>
-
-			<div class="flex flex-col text-center items-center rounded-xl p-5">
-				<iframe width="100%" height="315px" src="https://www.youtube.com/embed/AWNHF_O0gek" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-				
-            </div>
+		<div class="item">
+			
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.51.34%20PM%20(5).jpeg?alt=media&token=c8713c1a-bba0-4bea-8946-c002882168bf'class="w-full rounded-md">
+			
 
 		
-
-			<div class="flex flex-col text-center items-center rounded-xl p-5">
-				<iframe width="100%" height="315px" src="https://www.youtube.com/embed/e7vb5wH2G-4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-				
-            </div>
-
-
-			
-
-			<div class="flex flex-col text-center items-center rounded-xl p-5">
-				<iframe width="100%" height="315px" src="https://www.youtube.com/embed/s38UopRkzaA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-				
-            </div>
-
-
-			<div class="flex flex-col text-center items-center rounded-xl p-5">
-				<iframe width="100%" height="315px" src="https://www.youtube.com/embed/EJ2LcUq412Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-				
-            </div>
-
-			
-			<div class="flex flex-col text-center items-center rounded-xl p-5">
-				<iframe width="100%" height="315px" src="https://www.youtube.com/embed/LLbB-NC8R4w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-				
-            </div>
-
-			<div class="flex flex-col text-center items-center rounded-xl p-5">
-				<iframe width="100%" height="315px" src="https://www.youtube.com/embed/rTaDyC9qZBM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-				
-            </div>
-
-
-
-
 		</div>
-        </div>
-
-
-
-  </section>
-
-
-
-
-
-				
-	<div id='gallery' class="max-w-4xl mb-10 mt-10 mx-5 md:mx-auto sm:text-center lg:max-w-7xl md:mb-12">
-		
-		<div class="max-w-3xl mx-auto mt-5 text-center">
-				<h2 class="text-3xl font-bold md:text-4xl md:leading-tight dark:text-white">Photo Gallery
-				</h2>
-			  </div>
-	
-			<div class="owl-one img-carousel owl-carousel owl-theme my-10 max-w-6xl mx-auto">
-				<div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.07.06%20PM.jpeg?alt=media&token=9b0005d8-60a5-4e0b-b0ca-427b14688b93&_gl=1*l4jkaq*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk1NzA1LjYwLjAuMA..'class="w-full rounded-md">
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.07.07%20PM.jpeg?alt=media&token=29ad58e3-59ac-45b3-9b66-d436ea9a9fa4&_gl=1*1tk2xn1*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk1NzIxLjQ0LjAuMA..'class="w-full rounded-md">
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.07.08%20PM.jpeg?alt=media&token=4de5d958-cf0b-4fc3-b5c5-b31d6b68f081&_gl=1*k4xpvh*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk1NzM1LjMwLjAuMA..'class="w-full rounded-md">
-	</div>
-	<div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/cropped%2FWhatsApp%20Image%202023-10-13%20at%204.07.15%20PM%20(1).jpeg?alt=media&token=72cab9a1-3a05-4a9b-bba3-1343905a2d21&_gl=1*h4dqx1*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk3Mzc0LjMwLjAuMA..'class="w-full rounded-md">
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.07.15%20PM.jpeg?alt=media&token=b24d1a03-fceb-408d-b716-a6acacc5e709&_gl=1*1ki2y65*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk1OTc4LjEuMC4w'class="w-full rounded-md">
-	</div>
 		<div class="item">
+			
+			<img src='https://firebasestorage.googleapis.com/v0/b/website-storage-account.appspot.com/o/Just%20Learn%20Farming%2FWhatsApp%20Image%202023-04-06%20at%204.43.06%20PM.jpeg?alt=media&token=a4c12f89-f482-4007-bb7a-bfd04639b647'class="w-full rounded-md">
 		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.07.09%20PM%20(1).jpeg?alt=media&token=04d58745-c4d3-4fdb-898d-6ca31c417711&_gl=1*6s1khu*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk1NzUyLjEzLjAuMA..'class="w-full rounded-md">
-	</div>
-	<div class="item">
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.07.09%20PM%20(2).jpeg?alt=media&token=ca4fd70f-47af-4c99-a527-a184d4b88080&_gl=1*1t0716x*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk1NzYzLjIuMC4w'class="w-full rounded-md">
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.07.09%20PM.jpeg?alt=media&token=86388242-fff5-4e5c-b147-f5e74f15f033&_gl=1*1hwmty5*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk1Nzc4LjYwLjAuMA..'class="w-full rounded-md">
-	</div>
-	<div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.07.11%20PM%20(1).jpeg?alt=media&token=a35c993c-b127-4a00-bb16-75f4ecb5f35d&_gl=1*29e0qx*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk1NzkzLjQ1LjAuMA..'class="w-full rounded-md">
-	</div>
+		</div>
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.54.54%20PM.jpeg?alt=media&token=b0e7c1a7-f528-4dc7-b200-00c5f0a007b9'class="w-full rounded-md">
+				
+		</div>
 	
-	<div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.07.11%20PM%20(2).jpeg?alt=media&token=0f0d8d39-09cd-436c-8288-995392b45a79&_gl=1*tv538x*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk1ODA5LjI5LjAuMA..'class="w-full rounded-md">
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.07.11%20PM.jpeg?alt=media&token=4d1e11f9-0bb5-4a31-b61c-67e0360b246a&_gl=1*ts3emf*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk1ODIyLjE2LjAuMA..'class="w-full rounded-md">
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.07.12%20PM%20(1).jpeg?alt=media&token=8081e901-79c9-4165-a40d-afecce563088&_gl=1*1rql5zv*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk1ODM0LjQuMC4w'class="w-full rounded-md">
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.07.12%20PM.jpeg?alt=media&token=42ac73a7-335c-40b8-abb5-debb343c7315&_gl=1*1kzxh2z*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk1ODQ2LjYwLjAuMA..'class="w-full rounded-md">
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.07.13%20PM%20(1).jpeg?alt=media&token=2e7e607f-2509-403f-8110-dc16c6fcd03b&_gl=1*1jey7i1*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk1ODYxLjQ1LjAuMA..'class="w-full rounded-md">
-	</div>
-	<div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.07.13%20PM.jpeg?alt=media&token=01efc95d-9cf6-4a0c-a446-4e20e50ff635&_gl=1*19nc079*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk1OTE5LjYwLjAuMA..'class="w-full rounded-md">
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.07.14%20PM%20(1).jpeg?alt=media&token=223d294f-b4a7-434b-9f2a-116822483a8c&_gl=1*8yagf0*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk1OTMyLjQ3LjAuMA..'class="w-full rounded-md">
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.07.14%20PM.jpeg?alt=media&token=98c0597d-fdf8-45e7-90a6-ca0f16dda56d&_gl=1*1rmkk4v*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk1OTQ1LjM0LjAuMA..'class="w-full rounded-md">
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.54.55%20PM%20(2).jpeg?alt=media&token=deee2fce-a83e-40b2-b40c-d37fed546ab8' class="w-full rounded-md">
+		</div>
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.54.55%20PM%20(3).jpeg?alt=media&token=c4d6ecb5-c7fa-44f4-8a78-6ca793d9e3cd' class="w-full rounded-md">
+				
+		</div>
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.54.55%20PM%20(4).jpeg?alt=media&token=9c242965-023b-4a26-b963-01782ea06194' class="w-full rounded-md">
+				
+		</div>
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.54.55%20PM%20(5).jpeg?alt=media&token=e74f8f61-cd3d-4ca9-b9d8-84ecc42079f2' class="w-full rounded-md">
+				
+		</div>
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.54.55%20PM%20(6).jpeg?alt=media&token=55e4ee45-dc25-4c01-9dd7-4a65f0264239' class="w-full rounded-md">
+				
+		</div>
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.54.55%20PM%20(7).jpeg?alt=media&token=abed67b1-c51a-40f7-a37e-d48ef8fe1db0' class="w-full rounded-md">
+				
+		</div>
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.54.55%20PM%20(8).jpeg?alt=media&token=104e089b-fab2-4e2a-98ab-52ad304f88ce' class="w-full rounded-md">
+				
+		</div>
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.54.55%20PM%20(9).jpeg?alt=media&token=2d530393-896c-4655-9d87-040b47436f81' class="w-full rounded-md">
+				
+		</div>
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%206.58.08%20PM%20(1).jpeg?alt=media&token=617f53de-d310-4c16-bb85-73e3cbff14f1' class="w-full rounded-md">
+				
+		</div>
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%207.07.09%20PM%20(1).jpeg?alt=media&token=2eca1f51-2c7b-4dad-9ecc-1c3860f2d44f' class="w-full rounded-md">
+				
+		</div>
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/website-storage-account.appspot.com/o/Just%20Learn%20Farming%2FWhatsApp%20Image%202023-04-05%20at%207.27.49%20PM.jpeg?alt=media&token=a8d55ff7-c627-4403-9f10-207960ba5581' class="w-full rounded-md">
+				
+		</div>
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/website-storage-account.appspot.com/o/Just%20Learn%20Farming%2FWhatsApp%20Image%202023-03-22%20at%201.36.40%20PM.jpeg?alt=media&token=d98f636e-19dc-4e44-9516-a5356a175e37' class="w-full rounded-md">
+				
+		</div>
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%207.12.03%20PM%20(2).jpeg?alt=media&token=977984f9-7c0d-4544-b790-cc68acb55b0c' class="w-full rounded-md">
+				
+		</div>
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/images%2FWhatsApp%20Image%202023-04-11%20at%207.10.10%20PM%20(2).jpeg?alt=media&token=87615d41-e87c-460d-ad7c-79712c7ef18e' class="w-full rounded-md">
+				
+		</div>
+		</div>
 	</div>
 
-	<div class="item">
+
+
+
+
+	<div class="max-w-3xl mb-5 mt-24 mx-5 md:mx-auto sm:text-center lg:max-w-7xl ">
 		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.07.16%20PM%20(1).jpeg?alt=media&token=f7bee485-df19-4d0e-9da5-96e86516e5c4&_gl=1*wgfau3*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk2MDIyLjYwLjAuMA..'class="w-full rounded-md">
-	</div>
-	<div class="item">
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.07.16%20PM%20(2).jpeg?alt=media&token=5ac4d857-ae75-495c-9e40-c467468ea3df&_gl=1*7c6im1*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk2MDM1LjQ3LjAuMA..'class="w-full rounded-md">
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.07.16%20PM.jpeg?alt=media&token=06713005-69da-40a4-bf97-2c9c4c02cd0b&_gl=1*lxc7yg*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk2MDQ4LjM0LjAuMA..'class="w-full rounded-md">
-	</div>
-	<div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.07.17%20PM%20(1).jpeg?alt=media&token=9113869d-a968-4b4c-84b8-a7479dd15232&_gl=1*qe6vrc*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk2MDYyLjIwLjAuMA..'class="w-full rounded-md">
-	</div>
+		<h2 class="text-4xl md:text-5xl font-bold mx-10 md:mx-auto leading-tighter tracking-tighter mb-6 font-heading">
+			Our Clients
+		</h2>
+
+		<div class="owl-two img-carousel owl-carousel owl-theme my-10 max-w-5xl mx-auto">
+		<div class="item">
 	
-	<div class="item">
+				<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/logos%2FAMBUJACEM.NS-bc1a2948.png?alt=media&token=7cfde3b8-b3ab-4885-90fd-0f58f67e53f5'class="w-full rounded-md">
+		</div>
+		<div class="item">
+			
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/logos%2Fimage%2080.png?alt=media&token=6a548534-1405-40e0-bb37-0ec9183341e4'class="w-full rounded-md">
+			
+
 		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.07.17%20PM%20(2).jpeg?alt=media&token=398a2466-2869-4e96-ab1f-db8623eb7338&_gl=1*qy1zmg*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk2MDc1LjcuMC4w'class="w-full rounded-md">
-	</div><div class="item">
+		</div>
+		<div class="item">
+			
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/logos%2Fimage%2081.png?alt=media&token=e2da224f-e24f-4a04-b7c4-956e3756b397'class="w-full rounded-md">
 		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.07.17%20PM.jpeg?alt=media&token=4ad61225-a426-4170-82b9-9b4b7ed76433&_gl=1*1jpveo9*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk2MDkwLjYwLjAuMA..'class="w-full rounded-md">
-	</div><div class="item">
+		</div>
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/logos%2Fimage%2082.png?alt=media&token=2384303e-f576-4a40-9936-1d3e2fcd1fa4'class="w-full rounded-md">
+				
+		</div>
+	
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/logos%2Fimage%2083.png?alt=media&token=8b5c8a5f-b612-4a00-a7dc-5fa574d77756' class="w-full rounded-md">
+		</div>
 		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.07.18%20PM%20(1).jpeg?alt=media&token=812e2923-b3a0-4104-bcda-40975738a9de&_gl=1*iz50uc*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk2MTAzLjQ3LjAuMA..'class="w-full rounded-md">
-	</div><div class="item">
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/logos%2Fimage%2085.png?alt=media&token=6491b5e0-6a4b-4878-8c79-c92861052009' class="w-full rounded-md">
+				
+		</div>
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/logos%2Fimage%2086.png?alt=media&token=fb80a6d9-9f1a-4d32-b4d9-a94e0555d0ac' class="w-full rounded-md">
+				
+		</div>
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/logos%2Fimage%2087.png?alt=media&token=3011b829-03e8-4350-90d8-6dbfdbf1fc5a' class="w-full rounded-md">
+				
+		</div>
+
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/logos%2Fimage%2088.png?alt=media&token=9936ca32-226c-42dc-b433-8bbac0d9b616' class="w-full rounded-md">
+				
+		</div>
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/logos%2Fimage%2089.png?alt=media&token=cc5aaec0-c8cb-470c-a2a0-b111c36ae6a1' class="w-full rounded-md">
+				
+		</div>
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/logos%2Fimage%2090.png?alt=media&token=5b7925d4-cf2c-44e9-b603-e970e090c19f' class="w-full rounded-md">
+				
+		</div>
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/logos%2Fimage%2091.png?alt=media&token=37820436-b46a-49df-b7f3-e85233e67e30' class="w-full rounded-md">
+				
+		</div>
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/logos%2Fimage%2092.png?alt=media&token=4ccfbd09-4276-453e-9565-889b8c981268' class="w-full rounded-md">
+				
+		</div>
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/logos%2Fimage%2093.png?alt=media&token=3b505f97-2155-4867-930e-e3ce3f5d9ddd' class="w-full rounded-md">
+				
+		</div>
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/logos%2Fimage%2094.png?alt=media&token=886623b3-ace4-4bcf-a6e9-0e7071961cff' class="w-full rounded-md">
+				
+		</div>
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/logos%2Fimage%2095.png?alt=media&token=d35ef13e-9504-4fb9-967d-02320c4d3a1f' class="w-full rounded-md">
+				
+		</div>
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/logos%2Fimage%2096.png?alt=media&token=dddfea76-3942-4888-be0c-6aa0cbdcce9f' class="w-full rounded-md">
+				
+		</div>
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/logos%2Fimage%2097.png?alt=media&token=8cd9892b-ef10-43e7-88cb-ee62cf9fc761' class="w-full rounded-md">
+				
+		</div>
 		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.07.18%20PM.jpeg?alt=media&token=b59b31ef-2906-48ea-85a3-1867c9e22708&_gl=1*1ueaowm*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk2MTIxLjI5LjAuMA..'class="w-full rounded-md">
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.07.19%20PM%20(1).jpeg?alt=media&token=419075c3-6ad3-406a-8874-481596e1b179&_gl=1*9bm4ld*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk2MTM2LjE0LjAuMA..'class="w-full rounded-md">
+		<div class="item">
+			<img src='https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/logos%2Fimage%2099.png?alt=media&token=47ca3673-742b-4436-a5c1-ed2f7cf1717c' class="w-full rounded-md" style='height:80%'>
+				
+		</div>
+		</div>
 	</div>
-	<div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.07.19%20PM.jpeg?alt=media&token=855696d5-6723-498f-afc8-4095b5844e12&_gl=1*cwozw6*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk2MTU3LjYwLjAuMA..'class="w-full rounded-md">
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.07.20%20PM.jpeg?alt=media&token=f2b58343-4529-4c36-b3dd-663caf41194c&_gl=1*iwc7k0*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk2MTcyLjQ1LjAuMA..'class="w-full rounded-md">
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.07.21%20PM.jpeg?alt=media&token=e8129734-2ac8-4662-8145-4dad55e57f82&_gl=1*9lcaim*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk2MTg2LjMxLjAuMA..'class="w-full rounded-md">
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.16.53%20PM.jpeg?alt=media&token=65d2f743-d21d-4400-ae9c-5d6600842999&_gl=1*tuyea5*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk2MjA0LjEzLjAuMA..'class="w-full rounded-md">
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.16.56%20PM%20(1).jpeg?alt=media&token=4736909a-03b0-42a4-bb13-aacd43cfd98d&_gl=1*5hq53b*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk2MjIzLjYwLjAuMA..'class="w-full rounded-md">
-</div>
-
-<div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.16.56%20PM%20(2).jpeg?alt=media&token=37b6309a-ae3a-450a-bb2e-7e700597b99d&_gl=1*1ywn5fc*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk2MjYyLjIxLjAuMA..'class="w-full rounded-md">
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.16.56%20PM.jpeg?alt=media&token=0c93d3f4-95bf-470d-9eea-54eb31c85193&_gl=1*4se0vr*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk2Mjc3LjYuMC4w'class="w-full rounded-md">
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.16.57%20PM%20(1).jpeg?alt=media&token=7ebafcdc-0cb4-49e3-94a9-af757491d7f7&_gl=1*6hqqs0*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk2Mjk2LjYwLjAuMA..'class="w-full rounded-md">
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.16.57%20PM.jpeg?alt=media&token=710d164c-b9d8-4d92-aa85-410571920277&_gl=1*6qslzo*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk2MzEwLjQ2LjAuMA..'class="w-full rounded-md">
-	</div>
-<div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.16.58%20PM%20(2).jpeg?alt=media&token=71cd7c80-5535-420d-9b5e-c9642f836e27&_gl=1*17kfhjb*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk2MzQyLjE0LjAuMA..'class="w-full rounded-md">
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.16.58%20PM.jpeg?alt=media&token=d40e1a59-9af7-43bc-952f-1b0c765372d5&_gl=1*ouh9h8*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk2MzU2LjYwLjAuMA..'class="w-full rounded-md">
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.16.59%20PM%20(1).jpeg?alt=media&token=c9f27c4a-097a-481b-9871-1e8199aa8b49&_gl=1*1ii9r1o*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk2Mzc1LjQxLjAuMA..'class="w-full rounded-md">
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.16.59%20PM.jpeg?alt=media&token=4df43016-fa26-48f5-abd0-4198197bcb0f&_gl=1*wp5ug7*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk2Mzg5LjI3LjAuMA..'class="w-full rounded-md">
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.17.00%20PM%20(1).jpeg?alt=media&token=0b702e93-655e-4822-95ad-c3c935f3bb8f&_gl=1*1btambm*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk2NDA2LjEwLjAuMA..'class="w-full rounded-md">
-</div>
-<div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.17.00%20PM.jpeg?alt=media&token=4c0c2530-0934-4103-b4ec-23e8ea58d57e&_gl=1*m2oqa0*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk2NDIxLjYwLjAuMA..'class="w-full rounded-md">
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.17.01%20PM%20(1).jpeg?alt=media&token=7e29dc16-a1c5-4d38-93dc-fece6ec3f473&_gl=1*95tusq*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk2NDM0LjQ3LjAuMA..'class="w-full rounded-md">
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.17.01%20PM%20(2).jpeg?alt=media&token=06e62317-71b5-4491-ba58-889fe45cb86d&_gl=1*1mzj0ue*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk2NDQ3LjM0LjAuMA..'class="w-full rounded-md">
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.17.01%20PM.jpeg?alt=media&token=6186761e-d636-462b-81f1-a332736e51d0&_gl=1*1fswjyh*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk2NDY1LjE2LjAuMA..'class="w-full rounded-md">
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.17.02%20PM%20(1).jpeg?alt=media&token=72a102c1-269d-475d-8afd-4f2ba955c540&_gl=1*sgq366*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk2NDgxLjYwLjAuMA..'class="w-full rounded-md">
-</div>
-
-
-
-<div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.17.02%20PM%20(2).jpeg?alt=media&token=6a2269cd-2699-4f29-bfbf-06d8613870f4&_gl=1*ejm67v*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk2NTIyLjE5LjAuMA..'class="w-full rounded-md">
-</div>
-<div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/cropped%2FWhatsApp%20Image%202023-10-13%20at%204.17.02%20PM.jpeg?alt=media&token=9e928bfe-de7b-4dea-9368-f35aff143088&_gl=1*1bd9kbk*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk3NDM4LjUyLjAuMA..'class="w-full rounded-md">
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.17.03%20PM.jpeg?alt=media&token=1b8e7612-252d-41c9-b20d-2a4627d191ec&_gl=1*yiba9h*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk2NjYzLjYwLjAuMA..'class="w-full rounded-md">
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.17.04%20PM%20(1).jpeg?alt=media&token=4fb5fd7f-11fc-440b-8232-6d15120c2f8b&_gl=1*f3fxha*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk2Njc5LjQ0LjAuMA..'class="w-full rounded-md">
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.17.04%20PM.jpeg?alt=media&token=52b601b6-b065-43ad-89de-63008e1edcd0&_gl=1*sku6a0*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk2Njk0LjI5LjAuMA..'class="w-full rounded-md">
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.17.05%20PM%20(1).jpeg?alt=media&token=776b0de6-61ad-4fba-b210-3452576a8d2a&_gl=1*v5nmvq*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk2NzA5LjE0LjAuMA..'class="w-full rounded-md">
-</div>
-<div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.17.05%20PM.jpeg?alt=media&token=5aabee7a-8eb5-4807-8346-582b543b392e&_gl=1*1r17s9*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk2NzI2LjYwLjAuMA..'class="w-full rounded-md">
-</div>
-<div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.17.06%20PM%20(1).jpeg?alt=media&token=71e78098-5356-4bad-823d-a022ef8294b4&_gl=1*tgfcw7*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk2NzQxLjQ1LjAuMA..'class="w-full rounded-md">
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.17.06%20PM.jpeg?alt=media&token=03dd5dd1-014d-4b96-bdee-274199c3bacf&_gl=1*hukw78*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk2NzU3LjI5LjAuMA..'class="w-full rounded-md">
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.17.07%20PM.jpeg?alt=media&token=0dbb7e29-d6f6-4e54-8e90-fd1d91a76553&_gl=1*12v2s0l*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk2Nzc0LjEyLjAuMA..'class="w-full rounded-md">
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.17.08%20PM.jpeg?alt=media&token=86c2a02b-b4e4-41d1-8d50-1881c79ba098&_gl=1*1jaz9qe*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk2NzkxLjYwLjAuMA..'class="w-full rounded-md">
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.26.22%20PM%20(1).jpeg?alt=media&token=87dbab30-7b57-46c0-83c2-059388924c3e&_gl=1*uko0p0*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk2ODA2LjQ1LjAuMA..'class="w-full rounded-md">
-</div>
-<div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.26.22%20PM.jpeg?alt=media&token=5758fa48-adb3-4614-b38a-e0f8baca3e10&_gl=1*kpg8gk*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk2ODIxLjMwLjAuMA..'class="w-full rounded-md">
-</div>
-<div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.26.23%20PM.jpeg?alt=media&token=26143d7e-2d2b-408d-9c40-017e37acabaf&_gl=1*oughqw*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk2ODM4LjEzLjAuMA..'class="w-full rounded-md">
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.26.24%20PM%20(1).jpeg?alt=media&token=09bb093e-5b32-4d03-919b-930f61c09d09&_gl=1*5wrp*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk2ODU0LjYwLjAuMA..'class="w-full rounded-md">
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.26.24%20PM%20(2).jpeg?alt=media&token=f361d5ee-163c-409d-80c2-a7ee777dba12&_gl=1*125htnm*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk2ODY5LjQ1LjAuMA..'class="w-full rounded-md">
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.26.24%20PM.jpeg?alt=media&token=e1db49c4-0b2a-4db6-aa9d-cc7cd7e6bf07&_gl=1*gt1o1e*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk2ODgzLjMxLjAuMA..'class="w-full rounded-md">
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.26.25%20PM%20(1).jpeg?alt=media&token=c191aadc-68ce-4cf3-b7c9-f255e2f4369a&_gl=1*652xox*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk2OTAwLjE0LjAuMA..'class="w-full rounded-md">
-</div>
-
-<div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.26.25%20PM%20(2).jpeg?alt=media&token=fc221a1a-e797-4ba4-b28f-10a60ae5f812&_gl=1*y7fcrr*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk2OTM0LjYwLjAuMA..'class="w-full rounded-md">
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.26.25%20PM.jpeg?alt=media&token=42535a63-2883-4582-9cfe-3b653a8325f3&_gl=1*157am30*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk2OTQ5LjQ1LjAuMA..'class="w-full rounded-md">
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.26.26%20PM%20(1).jpeg?alt=media&token=cacd0d8f-87e7-44ff-ba72-75c4f331a97d&_gl=1*1d6o6px*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk2OTY1LjI5LjAuMA..'class="w-full rounded-md">
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.26.26%20PM%20(2).jpeg?alt=media&token=36747298-3f68-4416-a581-b9d316158743&_gl=1*1gwky5j*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk2OTgzLjExLjAuMA..'class="w-full rounded-md">
-</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.26.26%20PM.jpeg?alt=media&token=d7bf6a11-9ffb-40a3-831d-657b99ce8990&_gl=1*1tmx8f7*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk2OTk5LjYwLjAuMA..'class="w-full rounded-md">
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.26.27%20PM%20(1).jpeg?alt=media&token=65496849-8e9e-4f1a-952c-60b2aca331a7&_gl=1*1n5855v*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk3MDE4LjQxLjAuMA..'class="w-full rounded-md">
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.26.27%20PM.jpeg?alt=media&token=12c1b4f6-46f5-4dfc-991d-4fab17d513e7&_gl=1*1pu6cgb*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk3MDMzLjI2LjAuMA..'class="w-full rounded-md">
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.26.28%20PM%20(1).jpeg?alt=media&token=47b34f49-e320-4985-a028-627c65cd58d0&_gl=1*ovcdos*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk3MDUyLjcuMC4w'class="w-full rounded-md">
-</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.26.28%20PM.jpeg?alt=media&token=c38bfd5e-88e1-4844-ac1f-ffebd8e15e10&_gl=1*ce0owd*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk3MDcwLjYwLjAuMA..'class="w-full rounded-md">
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.26.29%20PM%20(1).jpeg?alt=media&token=fea280de-b08e-4bad-8ab3-083e98406e1c&_gl=1*1fkfiyv*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk3MDg1LjQ1LjAuMA..'class="w-full rounded-md">
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.26.29%20PM%20(2).jpeg?alt=media&token=091c76d5-9d3f-4759-9b88-c039eec341a5&_gl=1*11ys6lw*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk3MTAzLjI3LjAuMA..'class="w-full rounded-md">
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.26.29%20PM.jpeg?alt=media&token=e1db7d33-0541-429c-9766-1fb1ac7f9791&_gl=1*ui73hf*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk3MTI0LjYuMC4w'class="w-full rounded-md">
-</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.26.30%20PM%20(1).jpeg?alt=media&token=1f5b13f4-a00e-4ece-a801-29c5c21fa279&_gl=1*c176d2*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk3MTM4LjYwLjAuMA..'class="w-full rounded-md">
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.26.30%20PM.jpeg?alt=media&token=0da331c8-8865-4fe9-9f08-5c62726180ee&_gl=1*11pxad*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk3MTUyLjQ2LjAuMA..'class="w-full rounded-md">
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/cropped%2FScreenshot%202023-10-13%20at%205.16.11%20PM.png?alt=media&token=94440cae-0cf5-4882-b5f2-c8fec03d49a9&_gl=1*sftpsd*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk3NTgxLjU1LjAuMA..'class="w-full rounded-md">
-	</div><div class="item">
-		
-		<img src='https://firebasestorage.googleapis.com/v0/b/finx-systems.appspot.com/o/gallery%2FWhatsApp%20Image%202023-10-13%20at%204.26.31%20PM.jpeg?alt=media&token=baea02ca-f9c1-4ade-bf7d-8f85972cca23&_gl=1*1r4aekl*_ga*OTA5MjUyNTAyLjE2Njc5MDE5NjQ.*_ga_CW55HF8NVT*MTY5NzE5NTQ5NC4xMDcuMS4xNjk3MTk3MTgzLjE1LjAuMA..'class="w-full rounded-md">
-</div>
-
-	</div>	
-</div>
-
-
-
-
 	
 
 
 
 
+	<!-- FAQ SECTION -->
+	<section id="faq">
+		<div class="px-4 py-16 mx-auto max-w-6xl lg:py-16">
+			<div class="max-w-xl sm:mx-auto lg:max-w-2xl">
+				<div class="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
+					<h2 class="max-w-lg mb-4 text-3xl font-bold leading-none tracking-tight sm:text-4xl md:mx-auto font-heading">
+						Frequently Asked Questions
+					</h2>
+				</div>
+			</div>
+			<div class="max-w-screen-xl sm:mx-auto">
+				<div class="grid grid-cols-1 gap-x-8 gap-y-8 lg:gap-x-16 md:grid-cols-2">
+					
+					<!-- FAQ 1 -->
+					<div class="space-y-8">
+						<div>
+
+							{datas.map((data: any) => 
+							<p class="mb-4 text-xl font-bold">
+								<Icon name="tabler:arrow-down-right" class="w-7 h-7 text-primary-500 inline-block icon-bold" />
+								 {data.q1}
+							</p>
+							<p class="text-gray-700 dark:text-gray-400 mb-2">
+								{data.a1}
+							</p>
+							)}
+
+						</div>
+					</div>
+
+					<!-- FAQ 2 -->
+					<div class="space-y-8">
+						<div>
+							{datas.map((data: any) => 
+							<p class="mb-4 text-xl font-bold">
+								<Icon name="tabler:arrow-down-right" class="w-7 h-7 text-primary-500 inline-block icon-bold" />
+								 {data.q2}
+							</p>
+							<p class="text-gray-700 dark:text-gray-400 mb-2">
+								{data.a2}
+							</p>
+							)}
+						</div>
+					</div>
+
+					<!-- FAQ 3 -->
+					<div class="space-y-8">
+						<div>
+							{datas.map((data: any) => 
+								<p class="mb-4 text-xl font-bold">
+									<Icon name="tabler:arrow-down-right" class="w-7 h-7 text-primary-500 inline-block icon-bold" />
+									 {data.q3}
+								</p>
+								<p class="text-gray-700 dark:text-gray-400 mb-2">
+									{data.a3}
+								</p>
+							)}
+						</div>
+					</div>
+
+					<!-- FAQ 4 -->
+					<div class="space-y-8">
+						<div>
+							{datas.map((data: any) => 
+								<p class="mb-4 text-xl font-bold">
+									<Icon name="tabler:arrow-down-right" class="w-7 h-7 text-primary-500 inline-block icon-bold" />
+									 {data.q4}
+								</p>
+								<p class="text-gray-700 dark:text-gray-400 mb-2">
+									{data.a4}
+								</p>
+							)}
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</section>
 
 
 
@@ -892,44 +972,95 @@ Angel Investor <br>
 
 
 
-
-
-
-	
-
-
-
-
-	
-
-  <!-- CTA SECTION -->
+	<!-- CTA SECTION -->
 	<section id="cta" class="relative">
 		<div class="max-w-6xl mx-auto px-4 sm:px-6 ">
 			<div class="py-4 md:py-10 mb-10">
-				<div class="max-w-3xl mx-auto text-center p-6 rounded-md shadow-xl bg-primary-500">
+				<div class="max-w-4xl mx-auto text-center p-6 rounded-md shadow-xl bg-primary-500">
 					<h2 class="text-4xl text-slate-100 dark:text-slate-200 md:text-4xl font-bold leading-tighter tracking-tighter mb-4 font-heading">
-						Connect with me for a speaking engagement?
+					<span> Unlock Your Potential with Just Learn: Experience the Future of 21st Century Education &amp; Skilling. </span>
 					</h2>
 					<p class="text-xl text-slate-200 dark:text-slate-300">
 						
 					</p>
 
-					<div class="mt-6">
-						{datas.map((data: any) => 
-						<a
-							class="btn bg-white text-primary-600 hover:bg-primary-800 mb-4 sm:mb-0"
-							href= 'mailto:abhishek@justrojgar.in'
+					<ul class="mt-4 grid sm:grid-cols-2 lg:grid-cols-2 gap-2 mx-auto lg:items-center max-w-[30rem]">
+					<li>
+						<a href="https://play.google.com/store/apps/details?id=com.justlearn.edu"
 							target="_blank"
-							rel="noopener"
 						>
-							<Icon name="tabler:brand-gmail" class="w-6 h-6 mr-2 -ml-1.5" /> Email me
+						<img src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'
+							alt="Google Play Link" style="max-width: 14rem;" class="rounded-md inline-flex items-center">
 						</a>
-						)}
-					</div>
+					</li>
+					<li>
+						<a href="https://apps.apple.com/us/app/just-learn/id1556804585"
+							target="_blank"
+						>
+						<img src='https://firebasestorage.googleapis.com/v0/b/website-storage-account.appspot.com/o/pribe%2Fapp-store-png-logo-33107.png?alt=media&token=9d6b8d50-4e55-4475-a5c3-441e68126b6e'
+							alt="App Store Link" style="max-width: 13rem;" class="rounded-md inline-flex items-center">
+						</a>
+					</li>
+					</ul>
 				</div>
 			</div>
 		</div>
 	</section>
+
+
+
+	<section id="services" class="relative">
+		<div class="max-w-[18rem] md:max-w-[65rem] px-4 sm:px-6 py-6 lg:px-8 lg:py-2  mx-auto border-b">
+		  <!-- Title -->
+		  <div class="max-w-3xl mx-auto mt-5 text-center">
+			<h2 class="text-3xl font-bold md:text-4xl md:leading-tight dark:text-white"> <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-secondary-500 ">Our Growth Partners
+			</span></h2>
+		  </div>
+		
+		  <!-- End Title -->
+		
+		  <!-- Grid -->
+		  <div class=" grid sm:grid-cols-3 lg:grid-cols-3  md:max-w-3xl mx-auto lg:items-center">
+			<!-- Card -->
+			
+			<div class="flex flex-col text-center rounded-xl p-8 ">
+				
+				<img src="https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/awards%2FLogo1.png?alt=media&token=282996f0-9648-4ceb-b2f1-24439374ed2f">
+				
+			</div>
+		
+		
+			<!-- End Card -->
+		
+			<!-- Card -->
+			
+			<div class="flex flex-col text-center rounded-xl p-10 mb-2 ">
+				<img src="https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/awards%2F8LNNNiimleic%20(1).png?alt=media&token=c3f37479-9dc1-4284-ae8c-eee0160510ae">
+			
+			
+			  
+			</div>
+		
+			<!-- End Card -->
+		
+
+			<div class="flex flex-col text-center rounded-xl p-10 mb-2 ">
+				<img src="https://firebasestorage.googleapis.com/v0/b/hacakthonco.appspot.com/o/awards%2FIIM_Lucknow_Logo.svg.png?alt=media&token=a8411986-541c-4585-83ad-8870f799d418">
+			
+			
+			  
+			</div>
+			
+
+			</div>
+		  <!-- End Grid -->
+		</div>
+		
+
+	<!-- End Usecases -->
+	</section>
+
+
 
 
 
@@ -938,66 +1069,74 @@ Angel Investor <br>
 		<div class="max-w-6xl mx-auto px-4 sm:px-6">
 			<div class="grid grid-cols-12 gap-4 gap-y-8 sm:gap-8 py-8 md:py-12">
 				<div class="col-span-12 lg:col-span-4">
-					{datas.map((data: any) => 
+				
 					<div class="mb-2">
 					
 						<a class="inline-block font-bold text-xl" href={getHomePermalink()}>
-							Abhishek Chola
+							Just Learn India, a product of Just Rojgar Solutions Pvt. Ltd.
 						</a>
 				
 					</div>
+					<div class="text-sm text-gray-600">
+								
+						<a class="text-gray-600 hover:text-gray-700 dark:text-gray-400 hover:underline transition duration-150 ease-in-out" href= {data.ctalink} target="_blank"> 
+							Indian Institute of Management- IIML, 1 F , B1,  
+Institutional Area, Sector 62, Noida – 201307 (U.P)- India
+							</a>
 				
-					)}
-					{datas.map((data: any) => 
-					<div class="md:flex md:items-center md:justify-between py-6 md:py-4">
+					</div>
+					
+			
+					<div class="md:flex md:items-center md:justify-between py-6 md:py-8">
 						<ul class="flex md:order-1 md:mb-0">
-							
 							
 							<li>
 								<a
-									class="text-blue-700 rounded-lg text-sm p-2.5 inline-flex items-center"
-									aria-label="LinkedIn"
-									href=""
+									class="text-red-400  rounded-lg text-sm p-2.5 inline-flex items-center"
+									aria-label="Email"
+									href='mailto:info@justlearnindia.com'
+									target="_blank"
+								>
+									<Icon name="tabler:brand-gmail" class="w-8 h-8" />
+								</a>
+							</li>
+							<li>
+								<a
+									class="text-blue-400  rounded-lg text-sm p-2.5 inline-flex items-center"
+									aria-label="Phone"
+									href="https://www.facebook.com/justlearnindia"
+									target="_blank"
+								>
+									<Icon name="tabler:brand-facebook" class="w-8 h-8" />
+								</a>
+							</li>
+							<li>
+								<a
+									class="text-blue-600  rounded-lg text-sm p-2.5 inline-flex items-center"
+									aria-label="Phone"
+									href="https://www.linkedin.com/in/justlearn"
 									target="_blank"
 								>
 									<Icon name="tabler:brand-linkedin" class="w-8 h-8" />
 								</a>
 							</li>
-						
-						
 							<li>
 								<a
-									class="text-blue-400 rounded-lg text-sm p-2.5 inline-flex items-center"
-									aria-label="Twitter"
-									href="https://twitter.com/CHOLAABHISHEK"
+									class="text-orange-400  rounded-lg text-sm p-2.5 inline-flex items-center"
+									aria-label="Phone"
+									href="tel:+91 9643306888"
 									target="_blank"
 								>
-									<Icon name="tabler:brand-twitter" class="w-8 w-8" />
+									<Icon name="tabler:phone" class="w-8 h-8" />
 								</a>
 							</li>
-						
-							<li>
-								<a
-									class="text-red-400  rounded-lg text-sm p-2.5 inline-flex items-center"
-									aria-label="Email"
-									href="mailto:abhishek@justrozgar.in"
-									target="_blank"
-								>
-									<Icon name="tabler:brand-gmail" class="w-8 w-8" />
-								</a>
-							</li>
-						
 						
 							
 						</ul>
 						
 					</div>
-					)}
-					<div class="hidden">
-					<p>
-						Made with love by <a class="text-blue-600 hover:underline font-bold dark:text-gray-200" href="https://edden.app/" target="_blank"><u> Edden</u></a>
-					</p>
-				</div>
+				
+
 				</div>
 			</div>
 		</div>
@@ -1006,37 +1145,35 @@ Angel Investor <br>
 	<script async src="https://tally.so/widgets/embed.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
 	<script>
-	$('.owl-two').owlCarousel({
+
+		$('.owl-one').owlCarousel({
 		loop:true,
+		margin:10,
 		dots: false,
-		lazyLoad: true,
-		margin:50,
 		autoplay: true,
 		autoplayTimeout: 3000,	
-		stagePadding:30,
+		stagePadding:10,
 		responsive:{
 			0:{
-				items:2
+				items:1
 			},
 			600:{
-				items:3
+				items:2
 			},
 			1000:{
-				items:6
+				items:3
 			}
 		}
 	})
-	</script>
+</script>
 <script>
-	$('.owl-one').owlCarousel({
+	$('.owl-two').owlCarousel({
 		loop:true,
+		margin:40,
 		dots: false,
-		lazyLoad: true,
-		margin:30,
 		autoplay: true,
-		autoplayTimeout: 4000,	
+		autoplayTimeout: 3000,	
 		stagePadding:30,
 		responsive:{
 			0:{
@@ -1051,6 +1188,39 @@ Angel Investor <br>
 		}
 	})
 	</script>
+<script>
+	$('.owl-three').owlCarousel({
+		loop:true,
+		margin:30,
+		dots: false,
+		autoplay: true,
+		autoplayTimeout: 3000,	
+		stagePadding:30,
+		responsive:{
+			0:{
+				items:1
+			},
+			600:{
+				items:1
+			},
+			1000:{
+				items:1
+			}
+		}
+	})
+	</script>
+	<script>
+	$(document).ready(function() {
+    $('#scrollUpButton').click(function() {
+        $('html, body').animate({scrollTop: 0}, 'slow');
+    });
+
+    $('#scrollDownButton').click(function() {
+        $('html, body').animate({scrollTop: $(document).height()}, 'slow');
+    });
+});
+</script>
 
 	
 </Layout>
+    
